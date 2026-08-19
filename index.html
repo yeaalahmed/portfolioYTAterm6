@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Yeaal Takian Ahmed — Portfolio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Mechanical engineering portfolio — Yeaal Takian Ahmed, Memorial University of Newfoundland.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;700&family=Jost:wght@600;700&display=swap" rel="stylesheet">
+<style>
+@page { size: 8.5in 11in; margin: 0; }
+:root{
+  --paper:#F2E6C9; --cream:#D8C7A3; --charcoal:#25231F;
+  --orange:#F04E23; --avocado:#4FA22C; --mustard:#FCAE17; --teal:#0F9C93; --brown:#514638;
+  --orange-cover:#C65A2E; --sage:#57685A;
+}
+*{box-sizing:border-box;}
+body{margin:0;font-family:"Inter","Liberation Sans","DejaVu Sans",sans-serif;color:var(--charcoal);background:var(--paper);}
+.mono{font-family:"IBM Plex Mono","Liberation Mono","DejaVu Sans Mono",monospace;}
+.page{width:8.5in;min-height:11in;position:relative;background:var(--paper);page-break-after:always;overflow:visible;padding:0.5in 0.55in;}
+.page:last-child{page-break-after:auto;}
+
+/* bold colour pages */
+.page.bold-bg{color:var(--charcoal);}
+.bg-orange{background:var(--orange);}
+.bg-teal{background:var(--teal);}
+.bg-mustard{background:var(--mustard);}
+.bg-avocado{background:var(--avocado);}
+.bg-paper{background:var(--paper);}
+
+.corner-tick{position:absolute;width:0.26in;height:0.26in;border:2.5px solid var(--charcoal);}
+.tick-tl{top:0.26in;left:0.26in;border-right:none;border-bottom:none;}
+.tick-tr{top:0.26in;right:0.26in;border-left:none;border-bottom:none;}
+.tick-bl{bottom:0.26in;left:0.26in;border-right:none;border-top:none;}
+.tick-br{bottom:0.26in;right:0.26in;border-left:none;border-top:none;}
+
+.footer-bar{position:absolute;bottom:0.28in;left:0.55in;right:0.55in;display:flex;justify-content:space-between;
+  font-size:8pt;color:var(--charcoal);border-top:2px solid var(--charcoal);padding-top:4px;letter-spacing:0.06em;font-weight:700;}
+
+/* ===== SECTION HEADER BAR (sticky-note style) ===== */
+.hdr-row{display:flex;align-items:stretch;gap:0;margin-bottom:0.22in;}
+.hdr-icon{width:0.78in;background:var(--charcoal);color:var(--paper);display:flex;align-items:center;justify-content:center;
+  font-size:22pt;font-weight:700;border:3px solid var(--charcoal);}
+.hdr-box{background:#fff;border:3px solid var(--charcoal);padding:0.14in 0.28in;display:flex;align-items:center;
+  margin-left:0.14in;position:relative;}
+.hdr-box::before{content:"";position:absolute;top:6px;left:6px;right:-6px;bottom:-6px;background:var(--charcoal);z-index:-1;}
+.hdr-title{font-family:"Oswald","Liberation Sans Narrow","Liberation Sans",sans-serif;font-weight:700;text-transform:uppercase;
+  font-size:26pt;letter-spacing:0.01em;color:var(--charcoal);}
+.hdr-rule{flex:1;height:2px;background:var(--charcoal);align-self:center;margin-left:0.2in;}
+
+.blurb-box{background:#fff;border:3px solid var(--charcoal);padding:0.14in 0.22in;display:inline-block;
+  margin-bottom:0.26in;position:relative;}
+.blurb-box::before{content:"";position:absolute;top:5px;left:5px;right:-5px;bottom:-5px;background:var(--charcoal);z-index:-1;}
+.blurb-box p{margin:0;font-family:"IBM Plex Mono","Liberation Mono","DejaVu Sans Mono",monospace;font-size:9.5pt;line-height:1.5;}
+
+/* ===== POLAROID PHOTOS ===== */
+.polaroid{background:#fff;padding:9px 9px 30px 9px;position:relative;display:inline-block;}
+.polaroid::before{content:"";position:absolute;top:6px;left:6px;right:-6px;bottom:-6px;background:rgba(37,35,31,0.55);z-index:-1;}
+.polaroid img{display:block;object-fit:cover;}
+.polaroid .tape{position:absolute;top:-11px;left:50%;width:0.9in;height:0.3in;background:rgba(235,205,90,0.88);
+  transform:translateX(-50%) rotate(-3deg);}
+.polaroid .cap{position:absolute;bottom:6px;left:9px;right:9px;text-align:center;
+  font-family:"IBM Plex Mono","Liberation Mono","DejaVu Sans Mono",monospace;font-size:7.3pt;color:var(--brown);letter-spacing:0.01em;}
+.rot-1{transform:rotate(-3deg);} .rot-2{transform:rotate(2.5deg);} .rot-3{transform:rotate(-1.5deg);}
+.rot-4{transform:rotate(3deg);} .rot-5{transform:rotate(-2.5deg);} .rot-6{transform:rotate(1.5deg);}
+.rot-0{transform:rotate(0deg);}
+
+/* ===== HARD SHADOW CARD ===== */
+.card{background:#fff;border:3px solid var(--charcoal);padding:0.2in 0.26in;position:relative;}
+.card::before{content:"";position:absolute;top:6px;left:6px;right:-6px;bottom:-6px;background:var(--charcoal);z-index:-1;}
+.card.tight{padding:0.14in 0.2in;}
+
+/* corner-bracket accent — echoes the page-level corner ticks, stamped onto every text box */
+.card::after,.hdr-box::after,.blurb-box::after,.ws-card::after,.soon-card::after{
+  content:"";position:absolute;top:-7px;left:-7px;width:15px;height:15px;
+  border-top:2.5px solid var(--charcoal);border-left:2.5px solid var(--charcoal);z-index:2;}
+
+/* ===== BADGES / TAGS ===== */
+.badge{display:inline-flex;align-items:center;gap:5px;background:var(--charcoal);color:#fff;
+  font-family:"IBM Plex Mono","Liberation Mono","DejaVu Sans Mono",monospace;font-weight:700;font-size:8pt;letter-spacing:0.06em;
+  text-transform:uppercase;padding:5px 11px;border:2px solid var(--charcoal);}
+.badge.pop{background:var(--orange);}
+.outcome{display:flex;align-items:center;gap:8px;background:#fff;border:2.5px solid var(--charcoal);
+  padding:6px 12px;font-family:"IBM Plex Mono","Liberation Mono","DejaVu Sans Mono",monospace;font-size:8.5pt;font-weight:700;
+  text-transform:uppercase;margin-bottom:6px;}
+.outcome .chk{width:16px;height:16px;border:2px solid var(--charcoal);display:flex;align-items:center;justify-content:center;
+  font-size:9pt;flex-shrink:0;}
+
+/* ===== TYPE ===== */
+h1.headline{font-family:"Oswald","Liberation Sans Narrow","Liberation Sans",sans-serif;font-weight:700;text-transform:uppercase;
+  font-size:34pt;line-height:0.98;margin:0 0 0.1in 0;letter-spacing:0.005em;color:var(--charcoal);}
+h1.headline .accent{color:var(--orange);text-decoration:underline;text-decoration-thickness:4px;text-underline-offset:5px;}
+h2.subhead{font-family:"Oswald","Liberation Sans Narrow","Liberation Sans",sans-serif;font-weight:700;text-transform:uppercase;
+  font-size:15pt;margin:0 0 8px 0;letter-spacing:0.02em;}
+p.body-text{font-size:10pt;line-height:1.5;margin:0 0 9px 0;}
+.meta-list{font-family:"IBM Plex Mono","Liberation Mono","DejaVu Sans Mono",monospace;font-size:8pt;line-height:1.7;text-transform:uppercase;}
+.meta-list b{font-weight:700;}
+
+/* ===== INDEX ===== */
+.index-row{display:flex;align-items:baseline;padding:7px 8px;background:#fff;border:2px solid var(--charcoal);margin-bottom:5px;}
+.index-num{font-family:"IBM Plex Mono","Liberation Mono","DejaVu Sans Mono",monospace;color:var(--orange);font-weight:700;width:0.6in;font-size:10.5pt;}
+.index-title{font-family:"Oswald","Liberation Sans Narrow","Liberation Sans",sans-serif;font-weight:700;text-transform:uppercase;font-size:11.5pt;flex:1;}
+.index-tier{font-family:"IBM Plex Mono","Liberation Mono","DejaVu Sans Mono",monospace;font-size:7pt;color:var(--brown);text-transform:uppercase;}
+.index-cat{display:inline-block;background:var(--charcoal);color:#fff;font-family:"IBM Plex Mono","Liberation Mono","DejaVu Sans Mono",monospace;
+  font-size:8.5pt;text-transform:uppercase;letter-spacing:0.12em;padding:4px 10px;margin:0.16in 0 0.08in 0;}
+
+/* ===== BRIEF / MAKE-AND-TAKE GRID ===== */
+.mnt-grid{display:flex;flex-wrap:wrap;gap:0.16in 0.2in;justify-content:flex-start;}
+.mnt-item{width:2.28in;text-align:center;}
+.mnt-item .polaroid{width:2.28in;}
+.mnt-item .polaroid img{width:100%;height:1.65in;}
+.mnt-item .lbl{margin-top:10px;font-family:"Oswald","Liberation Sans Narrow","Liberation Sans",sans-serif;font-weight:700;
+  text-transform:uppercase;font-size:8.7pt;}
+
+/* ===== ELECTRICAL/FAB no-photo cards ===== */
+.soon-card{background:#fff;border:3px solid var(--charcoal);padding:0.18in;width:2.15in;position:relative;}
+.soon-card::before{content:"";position:absolute;top:5px;left:5px;right:-5px;bottom:-5px;background:var(--charcoal);z-index:-1;}
+.soon-card.wide{width:100%;}
+.soon-badge{display:inline-block;background:var(--mustard);border:2px solid var(--charcoal);font-family:"IBM Plex Mono","Liberation Mono","DejaVu Sans Mono",monospace;
+  font-size:7pt;font-weight:700;text-transform:uppercase;padding:3px 8px;margin-bottom:8px;}
+.soon-title{font-family:"Oswald","Liberation Sans Narrow","Liberation Sans",sans-serif;font-weight:700;text-transform:uppercase;font-size:11pt;margin-bottom:4px;}
+.soon-text{font-size:8.3pt;line-height:1.4;}
+.fab-row{display:flex;flex-wrap:wrap;gap:0.18in;}
+
+/* ===== COVER (kept from before, untouched look) ===== */
+.cover{background:var(--paper);display:flex;flex-direction:column;justify-content:center;}
+.cover-grid{position:absolute;top:0;left:0;right:0;bottom:0;
+  background-image:linear-gradient(var(--cream) 1px, transparent 1px),linear-gradient(90deg, var(--cream) 1px, transparent 1px);
+  background-size:0.35in 0.35in;opacity:0.55;}
+.cover-content{position:relative;z-index:2;padding-left:0.15in;}
+.cover-kicker{font-family:"IBM Plex Mono","Liberation Mono","DejaVu Sans Mono",monospace;font-size:10pt;letter-spacing:0.25em;color:var(--orange-cover);margin-bottom:0.15in;}
+.cover-title{font-family:"Oswald","Liberation Sans Narrow","Liberation Sans",sans-serif;font-weight:700;text-transform:uppercase;
+  font-size:64pt;line-height:0.92;color:var(--charcoal);letter-spacing:0.01em;margin:0;}
+.cover-title span{color:var(--orange-cover);}
+.cover-sub{font-family:"IBM Plex Mono","Liberation Mono","DejaVu Sans Mono",monospace;font-size:12.5pt;letter-spacing:0.12em;color:var(--brown);
+  margin-top:0.22in;text-transform:uppercase;}
+.cover-line{width:2.2in;height:5px;background:var(--orange-cover);margin:0.32in 0;}
+.cover-meta{margin-top:0.5in;display:flex;gap:0.6in;}
+.cover-meta div{font-family:"IBM Plex Mono","Liberation Mono","DejaVu Sans Mono",monospace;font-size:8.5pt;color:var(--brown);text-transform:uppercase;letter-spacing:0.05em;}
+.cover-meta b{display:block;color:var(--charcoal);font-size:9.5pt;margin-bottom:2px;}
+.cover .footer-bar{border-top:1px solid var(--brown);color:var(--brown);font-weight:400;}
+
+/* ===== DOC-STYLE PAGES (index + project spec sheets) ===== */
+.doc-topbar{background:var(--sage);color:#fff;font-family:"IBM Plex Mono","Liberation Mono","DejaVu Sans Mono",monospace;
+  font-size:10.5pt;font-weight:700;letter-spacing:0.18em;padding:8px 16px;display:inline-block;margin-bottom:0.16in;}
+.doc-rule{height:2px;background:var(--charcoal);margin-bottom:0.3in;}
+.doc-h1{font-family:"Oswald","Liberation Sans Narrow","Liberation Sans",sans-serif;font-weight:700;text-transform:uppercase;
+  font-size:38pt;color:var(--charcoal);margin:0 0 0.35in 0;letter-spacing:0.005em;}
+.doc-h1 span{color:var(--sage);}
+.doc-cat{display:inline-block;background:var(--sage);color:#fff;font-family:"IBM Plex Mono","Liberation Mono","DejaVu Sans Mono",monospace;
+  font-size:9pt;letter-spacing:0.1em;text-transform:uppercase;padding:6px 12px;margin:0.2in 0 0.1in 0;}
+.doc-row{display:flex;align-items:center;padding:11px 12px;background:var(--cream);border-bottom:2px solid var(--charcoal);}
+.doc-row .dnum{font-family:"IBM Plex Mono","Liberation Mono","DejaVu Sans Mono",monospace;color:var(--orange-cover);font-weight:700;width:0.7in;font-size:12pt;}
+.doc-row .dtitle{font-family:"Oswald","Liberation Sans Narrow","Liberation Sans",sans-serif;font-weight:700;text-transform:uppercase;font-size:13.5pt;flex:1;}
+.doc-row .dtag{font-family:"IBM Plex Mono","Liberation Mono","DejaVu Sans Mono",monospace;font-size:8pt;color:var(--brown);text-transform:uppercase;}
+.doc-brieftext{font-size:10pt;line-height:1.7;font-family:"Inter","Liberation Sans","DejaVu Sans",sans-serif;color:var(--charcoal);font-weight:700;text-transform:uppercase;}
+
+.doc-projhead{display:flex;justify-content:space-between;align-items:flex-start;border-bottom:3px solid var(--orange-cover);padding-bottom:0.16in;margin-bottom:0.28in;}
+.doc-projnum{font-family:"IBM Plex Mono","Liberation Mono","DejaVu Sans Mono",monospace;color:var(--orange-cover);font-weight:700;font-size:11pt;letter-spacing:0.12em;margin-bottom:4px;}
+.doc-projtitle{font-family:"Oswald","Liberation Sans Narrow","Liberation Sans",sans-serif;font-weight:700;text-transform:uppercase;font-size:29pt;line-height:1.02;color:var(--charcoal);margin:0;}
+.doc-projsub{font-family:"IBM Plex Mono","Liberation Mono","DejaVu Sans Mono",monospace;font-size:9.5pt;letter-spacing:0.08em;color:var(--brown);text-transform:uppercase;margin-top:6px;}
+.doc-metablock{font-family:"IBM Plex Mono","Liberation Mono","DejaVu Sans Mono",monospace;font-size:8.3pt;text-transform:uppercase;text-align:right;
+  line-height:2;border-left:2px solid var(--orange-cover);padding-left:0.2in;white-space:nowrap;}
+.doc-metablock b{font-weight:700;}
+.doc-photo{border:2px solid var(--charcoal);background:#fff;padding:5px;}
+.doc-photo img{width:100%;display:block;object-fit:cover;}
+.doc-photo-cap{font-family:"IBM Plex Mono","Liberation Mono","DejaVu Sans Mono",monospace;font-size:7.8pt;color:var(--brown);text-transform:uppercase;margin-top:7px;letter-spacing:0.02em;}
+.doc-spec{border-left:3px solid var(--orange-cover);padding-left:0.16in;font-family:"IBM Plex Mono","Liberation Mono","DejaVu Sans Mono",monospace;font-size:8.5pt;line-height:2;text-transform:uppercase;margin-top:0.22in;}
+.doc-spec b{font-weight:700;}
+.doc-body p{font-size:10.5pt;line-height:1.65;margin:0 0 12px 0;color:var(--charcoal);font-family:"Inter","Liberation Sans","DejaVu Sans",sans-serif;}
+
+/* ===== ABOUT PAGE — retro fashion-poster style ===== */
+.about-page{background:var(--teal);}
+.about-grid{position:absolute;top:0;left:0;right:0;bottom:0;
+  background-image:linear-gradient(rgba(37,35,31,0.14) 1px, transparent 1px),linear-gradient(90deg, rgba(37,35,31,0.14) 1px, transparent 1px);
+  background-size:0.3in 0.3in;}
+.about-header{background:var(--paper);padding:0.16in 0.32in;display:flex;align-items:center;justify-content:space-between;position:relative;z-index:2;}
+.about-logo{background:var(--orange);color:var(--charcoal);font-family:"IBM Plex Mono","Liberation Mono","DejaVu Sans Mono",monospace;font-weight:700;font-size:9pt;letter-spacing:0.06em;padding:8px 14px;text-transform:uppercase;}
+.about-tabs{display:flex;gap:0.32in;font-family:"Inter","Liberation Sans",sans-serif;font-weight:700;font-size:8.5pt;letter-spacing:0.05em;text-transform:uppercase;color:var(--charcoal);}
+.about-navpill{background:var(--charcoal);color:var(--paper);font-family:"IBM Plex Mono","Liberation Mono","DejaVu Sans Mono",monospace;font-size:8pt;font-weight:700;padding:7px 16px;letter-spacing:0.05em;}
+.about-wave{width:100%;height:0.3in;position:relative;z-index:2;margin-bottom:0.15in;
+  background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 60" preserveAspectRatio="none"><path d="M0,0 L1200,0 L1200,18 C1000,55 900,5 750,26 C600,48 500,8 350,30 C230,50 120,12 0,34 Z" fill="%23F2E6C9"/></svg>');
+  background-size:100% 100%;background-repeat:no-repeat;}
+.about-kicker{font-family:"IBM Plex Mono","Liberation Mono","DejaVu Sans Mono",monospace;font-size:10.5pt;font-weight:700;letter-spacing:0.15em;color:var(--mustard);text-transform:uppercase;margin:0.15in 0 0.12in 0;}
+.about-headline{position:relative;margin-bottom:0.22in;}
+.about-headline .hl-row{position:relative;line-height:0.94;}
+.about-headline .shadow-line,.about-headline .fill-line{
+  font-family:'Jost','URW Gothic','TeX Gyre Adventor',"Liberation Sans Narrow",sans-serif;font-weight:700;text-transform:uppercase;
+  font-size:46pt;letter-spacing:0.005em;margin:0;white-space:nowrap;}
+.about-headline .shadow-line{position:absolute;top:5px;left:5px;color:var(--charcoal);z-index:1;}
+.about-headline .fill-line{position:relative;color:var(--paper);z-index:2;}
+.about-headline.sm .shadow-line,.about-headline.sm .fill-line{font-size:27pt;}
+.about-headline.sm .shadow-line{top:3px;left:3px;}
+.proj-title-pop{font-family:'Jost','URW Gothic','TeX Gyre Adventor',"Liberation Sans Narrow",sans-serif;font-weight:700;
+  text-transform:uppercase;font-size:21pt;line-height:1.05;letter-spacing:0.005em;color:var(--charcoal);
+  margin:6px 0 12px 0;border-bottom:5px solid var(--orange);padding-bottom:7px;display:inline-block;}
+.about-pill{display:inline-block;font-family:"Inter","Liberation Sans",sans-serif;font-weight:700;font-size:9.5pt;text-transform:uppercase;
+  padding:10px 22px;letter-spacing:0.03em;}
+.about-pill.solid{background:var(--charcoal);color:var(--paper);}
+.about-pill.outline{background:transparent;border:2px solid var(--charcoal);color:var(--charcoal);}
+.about-photo-block{position:relative;width:3.1in;height:4.7in;}
+.about-photo-back{position:absolute;top:0.24in;right:-0.14in;width:2.7in;height:4.3in;background:var(--orange);z-index:1;}
+.about-photo-mat{position:absolute;top:0;left:0;z-index:3;width:3.1in;height:4.7in;
+  background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 300" preserveAspectRatio="none"><path d="M12,20 Q100,-8 188,20 Q205,80 195,150 Q206,220 188,282 Q100,308 12,282 Q-6,220 5,150 Q-6,80 12,20 Z" fill="%23F2E6C9"/></svg>');
+  background-size:100% 100%;padding:0.22in;}
+.about-photo-mat img{width:100%;height:100%;object-fit:cover;display:block;}
+.starburst-wrap{position:absolute;bottom:-0.3in;left:-0.45in;width:1.6in;height:1.6in;z-index:4;transform:rotate(-8deg);}
+.starburst-bg{position:absolute;top:0;left:0;width:100%;height:100%;
+  background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><polygon points="100.0,5.0 115.1,33.7 141.2,14.4 142.4,46.8 174.3,40.8 161.3,70.5 192.6,78.9 168.0,100.0 192.6,121.1 161.3,129.5 174.3,159.2 142.4,153.2 141.2,185.6 115.1,166.3 100.0,195.0 84.9,166.3 58.8,185.6 57.6,153.2 25.7,159.2 38.7,129.5 7.4,121.1 32.0,100.0 7.4,78.9 38.7,70.5 25.7,40.8 57.6,46.8 58.8,14.4 84.9,33.7" fill="%23FCAE17"/></svg>');
+  background-size:100% 100%;}
+.starburst-text{position:absolute;top:0;left:0;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  font-family:"IBM Plex Mono","Liberation Mono","DejaVu Sans Mono",monospace;font-weight:700;font-size:10.5pt;color:var(--charcoal);text-align:center;line-height:1.3;z-index:5;}
+
+/* ===== workspace grid (kept clean/technical) ===== */
+.ws-grid{display:flex;flex-wrap:wrap;gap:0.15in;margin-top:0.08in;justify-content:center;}
+.ws-card{width:2.55in;border:3px solid var(--charcoal);background:#fff;padding:5px;position:relative;}
+.ws-card::before{content:"";position:absolute;top:5px;left:5px;right:-5px;bottom:-5px;background:var(--charcoal);z-index:-1;}
+.ws-card img{width:100%;height:1.62in;object-fit:contain;background:#fff;display:block;}
+.ws-card-cap{font-family:"IBM Plex Mono","Liberation Mono","DejaVu Sans Mono",monospace;font-size:7.3pt;color:var(--brown);text-transform:uppercase;margin-top:5px;}
+</style>
+<style>
+/* web fallback: browsers off Linux won't have Liberation/DejaVu, so these substitutes load first */
+body{background:#1c1a17;}
+.site-wrap{max-width:8.5in;margin:0 auto;background:transparent;}
+.page{margin:0 auto 0.4in auto;box-shadow:0 12px 34px rgba(0,0,0,0.45);}
+@media (max-width:900px){
+  .site-wrap{max-width:100%;}
+  .page{width:100%!important;min-height:auto!important;transform:scale(1)!important;}
+}
+</style>
+</head>
+<body>
+
+<!-- ================= PAGE 1: COVER (UNCHANGED) ================= -->
+<div class="page cover">
+  <div class="cover-grid"></div>
+  <div class="corner-tick tick-tl"></div><div class="corner-tick tick-tr"></div>
+  <div class="corner-tick tick-bl"></div><div class="corner-tick tick-br"></div>
+  <div class="cover-content">
+    <div class="cover-kicker">// ENGINEERING PORTFOLIO — VOLUME 01</div>
+    <h1 class="cover-title">YEAAL TAKIAN<br>AHMED<span>.</span></h1>
+    <div class="cover-line"></div>
+    <div class="cover-sub">Mechanical Engineering &nbsp;•&nbsp; Design / Prototyping / Analysis</div>
+    <div class="cover-meta">
+      <div><b>PROGRAM</b>B.ENG (CO-OP)<br>MECHANICAL — MUN</div>
+      <div><b>BASE</b>ST. JOHN'S, NL</div>
+      <div><b>FOCUS</b>MECH. DESIGN / ROBOTICS / FABRICATION</div>
+      <div><b>YEAR</b>2026</div>
+    </div>
+  </div>
+  <div class="footer-bar"><span>ENGINEERING PORTFOLIO — YEAAL T. AHMED</span><span>DOC 001 / REV. B / 2026</span></div>
+</div>
+
+<!-- ================= PAGE 2: ABOUT (retro fashion-poster style) ================= -->
+<div class="page about-page">
+  <div class="about-grid"></div>
+
+  <div class="about-header">
+    <div class="about-logo">YT.</div>
+    <div class="about-tabs"><span>About</span><span>Projects</span><span>Contact</span></div>
+    <div class="about-navpill">VOL. 01</div>
+  </div>
+  <div class="about-wave"></div>
+
+  <div style="display:flex;gap:0.4in;padding:0 0.32in;position:relative;z-index:2;">
+    <div style="flex:1.15;">
+      <div class="about-kicker">// Mechanical Engineering</div>
+      <div class="about-headline">
+        <div class="hl-row"><div class="shadow-line">Designer.</div><div class="fill-line">Designer.</div></div>
+        <div class="hl-row"><div class="shadow-line">Builder.</div><div class="fill-line">Builder.</div></div>
+        <div class="hl-row"><div class="shadow-line">Teacher.</div><div class="fill-line">Teacher.</div></div>
+      </div>
+      <div class="card" style="margin-bottom:0.22in;">
+        <p class="body-text">Third-year Mechanical Engineering co-op student at Memorial University of Newfoundland, currently an Engineering Work Term Student with the Fisheries and Marine Institute's School of Ocean Technology. My work sits at the intersection of mechanical design, fabrication, and teaching people how things work.</p>
+        <p class="body-text" style="margin-bottom:0;">This portfolio spans inspection work with Bureau Veritas Group, educational programming at St. Matthew's School, and design and robotics work at the Marine Institute — plus a long list of smaller builds along the way.</p>
+      </div>
+      <div style="display:flex;gap:0.16in;margin-bottom:0.22in;">
+        <div class="about-pill solid">Contact Me</div>
+        <div class="about-pill outline">View Projects</div>
+      </div>
+      <div class="outcome"><span class="chk">✓</span> YTAHMED@MUN.CA</div>
+      <div class="outcome"><span class="chk">✓</span> ST. JOHN'S, NEWFOUNDLAND &amp; LABRADOR</div>
+      <div style="margin-top:0.5in;display:flex;gap:0.35in;">
+        <div style="text-align:center;">
+          <div class="mono" style="font-size:26pt;font-weight:700;color:var(--paper);line-height:1;">03</div>
+          <div class="mono" style="font-size:7.5pt;font-weight:700;color:var(--charcoal);letter-spacing:0.1em;margin-top:4px;">WORK SETTINGS</div>
+        </div>
+        <div style="text-align:center;">
+          <div class="mono" style="font-size:26pt;font-weight:700;color:var(--paper);line-height:1;">21+</div>
+          <div class="mono" style="font-size:7.5pt;font-weight:700;color:var(--charcoal);letter-spacing:0.1em;margin-top:4px;">BUILDS &amp; PROJECTS</div>
+        </div>
+        <div style="text-align:center;">
+          <div class="mono" style="font-size:26pt;font-weight:700;color:var(--paper);line-height:1;">2026</div>
+          <div class="mono" style="font-size:7.5pt;font-weight:700;color:var(--charcoal);letter-spacing:0.1em;margin-top:4px;">GRAD YEAR</div>
+        </div>
+      </div>
+    </div>
+    <div style="flex:0.9;display:flex;justify-content:center;padding-top:0.1in;">
+      <div class="about-photo-block">
+        <div class="about-photo-back"></div>
+        <div class="about-photo-mat">
+          <img src="img/sm/yeaal_portrait.jpg">
+        </div>
+        <div class="starburst-wrap">
+          <div class="starburst-bg"></div>
+          <div class="starburst-text">CO-OP<br>2026</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bar"><span>ABOUT</span><span>DOC 001 / PAGE 02</span></div>
+</div>
+
+<!-- ================= PAGE 3: INDEX ================= -->
+<div class="page">
+  <div class="corner-tick tick-tl"></div><div class="corner-tick tick-tr"></div>
+  <div class="doc-topbar">// 00 — CONTENTS</div>
+  <div class="doc-rule"></div>
+  <h1 class="doc-h1">PROJECT <span>INDEX</span></h1>
+
+  <div class="doc-cat" style="margin-top:0;">Flagship — Detailed</div>
+  <div class="doc-row"><div class="dnum">001</div><div class="dtitle">Pedal-Powered Alternator Generator</div><div class="dtag">St. Matthew's</div></div>
+  <div class="doc-row"><div class="dnum">002</div><div class="dtitle">Automated Door Closing Mechanism</div><div class="dtag">MUN Coursework</div></div>
+  <div class="doc-row"><div class="dnum">003</div><div class="dtitle">Workspace Design Project</div><div class="dtag">MUN Coursework</div></div>
+  <div class="doc-row"><div class="dnum">004</div><div class="dtitle">Acoustic Tank Water Level Sensor</div><div class="dtag">Marine Institute</div></div>
+  <div class="doc-row"><div class="dnum">005</div><div class="dtitle">Manipulator Arm Mount, ROV</div><div class="dtag">Marine Institute</div></div>
+
+  <div class="doc-cat">Marine Institute — Operations</div>
+  <div class="doc-row"><div class="dnum">006</div><div class="dtitle">ROV Simulator Operations</div><div class="dtag">Marine Institute</div></div>
+
+  <div class="doc-cat">Fairly Detailed — Automata</div>
+  <div class="doc-row"><div class="dnum">007</div><div class="dtitle">4-Bar Mechanism–Inspired Automata</div><div class="dtag">St. Matthew's</div></div>
+  <div class="doc-row"><div class="dnum">008</div><div class="dtitle">Motorized 2-Axis Movement Automata</div><div class="dtag">St. Matthew's</div></div>
+
+  <div class="doc-cat">Brief — Make, Electrical &amp; Fabrication (16 builds)</div>
+  <div class="doc-brieftext">
+    BALLOON-POWERED CAR · SNOWBALL LAUNCHER · TALKING STICK · ELASTIC-POWERED FAN · CROSSBOW · RUNNING MAN SPINNER · LAUNCHER · TURMERIC ANTHOTYPES · REMEMBRANCE DAY TALKING STICK · MICRO:BIT REACTION GAME · MICRO:BIT DIGITAL DICE · PRINTMAKING (4 TECHNIQUES) · GARDEN BINS &amp; TRELLIS · 3D PRINTING &amp; ALIGNMENT · VACUUM FORMING · CRICUT COASTERS
+  </div>
+
+  <div class="footer-bar"><span>CONTENTS</span><span>DOC 001 / PAGE 03</span></div>
+</div>
+
+<!-- ================= PROJECT 001 — PEDAL GENERATOR ================= -->
+<div class="page">
+  <div class="corner-tick tick-tl"></div><div class="corner-tick tick-tr"></div>
+
+  <div class="doc-projhead">
+    <div>
+      <div class="doc-projnum">PROJECT 001</div>
+      <h1 class="doc-projtitle">Pedal-Powered<br>Alternator Generator</h1>
+      <div class="doc-projsub">Energy Conversion &amp; Mechanical Prototyping</div>
+    </div>
+    <div class="doc-metablock">
+      <div><b>STATUS:</b> COMPLETE</div>
+      <div><b>YEAR:</b> 2025</div>
+      <div><b>TOOLS:</b> HAND TOOLS / ELECTRICAL / MULTIMETER</div>
+      <div><b>SITE:</b> ST. MATTHEW'S SCHOOL</div>
+    </div>
+  </div>
+
+  <div style="display:flex;gap:0.32in;">
+    <div style="flex:1.15;" class="doc-body">
+      <p>Funded, designed, and built a pedal-powered generator for classroom demonstrations — secured two grants totaling over $2,000 (CCNL's Youth Engagement Funding Initiative and the Wellness Coalition Avalon East) before touching any hardware.</p>
+      <p>Built around a genuine 12V/105A automotive alternator rather than a toy DC motor, belt-driven from a spin bike and mounted on a custom plywood-and-pallet base. Since the alternator outputs three-phase AC, a six-diode bridge rectifier converts it to usable DC, targeting ~1,500 RPM at the pedals.</p>
+      <p style="margin-bottom:0;">A Raspberry Pi logs voltage, RPM, and power output during testing. Guarded moving parts, secure mounting, and insulated wiring throughout — built for regular use by children in a classroom.</p>
+      <div class="doc-spec">
+        <div><b>FUNDING:</b> $2,000+ ACROSS 2 GRANTS</div>
+        <div><b>DRIVE:</b> BELT, SPIN BIKE TO ALTERNATOR</div>
+        <div><b>OUTPUT:</b> RECTIFIED DC, ~1,500 RPM TARGET</div>
+      </div>
+    </div>
+    <div style="flex:1;">
+      <div class="doc-photo">
+        <img src="img/sm/pedal_hero.jpg" style="height:2.9in;">
+      </div>
+      <div class="doc-photo-cap">FIG. 001A — ASSEMBLED GENERATOR, PALLET BASE</div>
+      <div class="doc-photo" style="margin-top:0.2in;">
+        <img src="img/sm/pedal_detail.jpg" style="height:2in;">
+      </div>
+      <div class="doc-photo-cap">FIG. 001B — ALTERNATOR MOUNT &amp; WIRING DETAIL</div>
+    </div>
+  </div>
+  <div class="footer-bar"><span>PROJECT 001 — PEDAL-POWERED GENERATOR</span><span>DOC 001 / PAGE 04</span></div>
+</div>
+
+<!-- ================= COMBINED: PROJECT 002 + 004 ================= -->
+<div class="page bold-bg bg-avocado">
+  <div class="about-grid"></div>
+  <div class="about-header">
+    <div class="about-logo">YT.</div>
+    <div class="about-navpill">DOC 001</div>
+  </div>
+  <div class="about-wave"></div>
+  <div style="position:relative;z-index:2;padding:0 0.32in;">
+    <div class="about-kicker">// Project 002 &amp; 004</div>
+    <div class="about-headline sm">
+      <div class="hl-row"><div class="shadow-line">Design &amp;</div><div class="fill-line">Design &amp;</div></div>
+      <div class="hl-row"><div class="shadow-line">Sensing.</div><div class="fill-line">Sensing.</div></div>
+    </div>
+  </div>
+
+  <div style="display:flex;gap:0.32in;margin-bottom:0.36in;padding:0 0.32in;position:relative;z-index:2;">
+    <div style="flex:1.1;">
+      <div class="badge">Project 002</div>
+      <h2 class="proj-title-pop">Automated Door Closing Mechanism</h2>
+      <div class="card tight">
+        <p class="body-text" style="font-size:10pt;">Four-person team analyzing a four-bar linkage for automatic door closing. My role: concept design, dimensioning the linkage geometry (195 / 225 / 325 / 390 mm), and writing the results and conclusion. Kinematic analysis, Python script, and CAD model were teammates' work.</p>
+        <div class="outcome" style="margin-top:8px;margin-bottom:0;"><span class="chk">✓</span> My role: geometry + results analysis</div>
+      </div>
+    </div>
+    <div style="flex:1;display:flex;align-items:center;justify-content:center;">
+      <div class="polaroid rot-3" style="width:100%;">
+        <div class="tape"></div>
+        <img src="img/sm/door_plot.jpg" style="width:100%;height:2.85in;">
+        <div class="cap">ANGULAR VELOCITY PLOT, DOOR &amp; CONNECTOR</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display:flex;gap:0.32in;padding:0 0.32in;position:relative;z-index:2;">
+    <div style="flex:1.1;">
+      <div class="badge">Project 004</div>
+      <h2 class="proj-title-pop">Acoustic Tank Water Level Sensor</h2>
+      <div class="card tight">
+        <p class="body-text" style="font-size:10pt;">Built on direct supervisor request for the School of Ocean Technology's acoustic tank: detect a water-level drop and alert staff automatically. An HC-SR04 ultrasonic sensor, isolated inside a length of pipe, pairs with an ESP32 that emails an alert over Wi-Fi. Working prototype — calibration is next before permanent install.</p>
+        <div class="outcome" style="margin-top:8px;margin-bottom:0;"><span class="chk">✓</span> Prototype sensing + Wi-Fi alert pipeline working</div>
+      </div>
+    </div>
+    <div style="flex:1;display:flex;align-items:center;justify-content:center;">
+      <div class="card" style="text-align:center;width:100%;">
+        <div class="mono" style="font-size:9.5pt;color:var(--orange);font-weight:700;margin-bottom:10px;letter-spacing:0.08em;">SIGNAL PATH</div>
+        <div class="mono" style="font-size:10pt;line-height:2.5;">WATER LEVEL ↓<br>HC-SR04 (IN PIPE) ↓<br>ESP32 — WI-FI ↓<br>ALERT EMAIL → SUPERVISOR</div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bar"><span>PROJECT 002 &amp; 004</span><span>DOC 001 / PAGE 05</span></div>
+</div>
+
+<!-- ================= PROJECT 003 — WORKSPACE DESIGN ================= -->
+<div class="page bold-bg bg-mustard">
+  <div class="about-grid"></div>
+  <div class="about-header">
+    <div class="about-logo">YT.</div>
+    <div class="about-navpill">DOC 001</div>
+  </div>
+  <div class="about-wave"></div>
+  <div style="position:relative;z-index:2;padding:0 0.32in;">
+    <div class="about-kicker">// Project 003</div>
+    <div class="about-headline sm">
+      <div class="hl-row"><div class="shadow-line">Workspace</div><div class="fill-line">Workspace</div></div>
+      <div class="hl-row"><div class="shadow-line">Design.</div><div class="fill-line">Design.</div></div>
+    </div>
+    <div class="card tight" style="margin-bottom:0.1in;">
+      <p class="body-text" style="margin-bottom:0;font-size:9.3pt;">Solo CAD project: a complete workspace designed in SolidWorks, delivered as a 6-sheet drawing set — 7+ components modelled and assembled across 4 revisions, with an emphasis on ergonomics and safety in a 12'-0" × 9'-2" room. Drawing-set work only; no physical build.</p>
+    </div>
+  </div>
+  <div class="ws-grid" style="position:relative;z-index:2;">
+    <div class="ws-card"><img src="img/sm/ws_1_iso.jpg"><div class="ws-card-cap">SHEET 1 — ISOMETRIC RENDER</div></div>
+    <div class="ws-card"><img src="img/sm/ws_2_cutaway.jpg"><div class="ws-card-cap">SHEET 2 — CUT-AWAY PERSPECTIVE</div></div>
+    <div class="ws-card"><img src="img/sm/ws_3_elev_render.jpg"><div class="ws-card-cap">SHEET 3 — RENDERED ELEVATIONS</div></div>
+    <div class="ws-card"><img src="img/sm/ws_5_floorplan.jpg"><div class="ws-card-cap">SHEET 5 — FLOOR PLAN, DIMENSIONED</div></div>
+    <div class="ws-card"><img src="img/sm/ws_6_outfit.jpg"><div class="ws-card-cap">SHEET 6 — OUTFIT PLAN, DIMENSIONED</div></div>
+    <div class="ws-card"><img src="img/sm/ws_4_elev_line.jpg"><div class="ws-card-cap">SHEET 4 — ELEVATIONS &amp; SECTIONS</div></div>
+  </div>
+  <div class="footer-bar"><span>PROJECT 003 — WORKSPACE DESIGN</span><span>DOC 001 / PAGE 06</span></div>
+</div>
+
+<!-- ================= COMBINED: PROJECT 005 + 006 ================= -->
+<div class="page bold-bg bg-teal">
+  <div class="about-grid"></div>
+  <div class="about-header">
+    <div class="about-logo">YT.</div>
+    <div class="about-navpill">DOC 001</div>
+  </div>
+  <div class="about-wave"></div>
+  <div style="position:relative;z-index:2;padding:0 0.32in;">
+    <div class="about-kicker">// Project 005 &amp; 006</div>
+    <div class="about-headline sm" style="margin-bottom:0.14in;">
+      <div class="hl-row"><div class="shadow-line">ROV Work.</div><div class="fill-line">ROV Work.</div></div>
+    </div>
+  </div>
+
+  <div style="display:flex;gap:0.26in;margin-bottom:0.2in;padding:0 0.32in;position:relative;z-index:2;">
+    <div style="flex:1;">
+      <div class="badge">Project 005</div>
+      <h2 class="proj-title-pop" style="font-size:16pt;">Manipulator Arm Mount</h2>
+      <div class="card tight">
+        <p class="body-text" style="font-size:9.3pt;">The manipulator arm on one of the Marine Institute's ROVs sat outside the operator's camera view. My supervisor and I 3D printed a custom mount to reposition it — then a printed extension when the first attempt fell short. A fast field fix, typical of ROV operations work.</p>
+        <div class="outcome" style="margin-top:8px;margin-bottom:0;"><span class="chk">✓</span> Manipulator now fully in camera frame</div>
+      </div>
+    </div>
+    <div style="flex:1.25;display:flex;gap:10px;align-items:flex-start;">
+      <div class="polaroid rot-1"><div class="tape"></div><img src="img/sm/manip_hero.jpg" style="width:2.3in;height:2.35in;"><div class="cap">ROV, MOUNTED ARM</div></div>
+      <div class="polaroid rot-5"><div class="tape"></div><img src="img/sm/manip_detail.jpg" style="width:2.3in;height:2.35in;"><div class="cap">MOUNT DETAIL</div></div>
+    </div>
+  </div>
+
+  <div style="display:flex;gap:0.3in;align-items:stretch;padding:0 0.32in;position:relative;z-index:2;">
+    <div style="flex:1.3;">
+      <div class="badge">006 — Operations</div>
+      <h2 class="proj-title-pop" style="font-size:16pt;">ROV Simulator Operations</h2>
+      <div class="card tight">
+        <p class="body-text" style="font-size:9.3pt;margin-bottom:8px;">A recurring part of my role: operating the Marine Institute's high-fidelity ROV simulators for visiting groups in the underwater exploration lab. The largest was the Global MATE ROV competition, hosting government and international guests; I also helped organize the four-day SHAD MicroMate program.</p>
+        <div class="outcome" style="margin-bottom:0;"><span class="chk">✓</span> Guided sessions, Global MATE ROV competition</div>
+      </div>
+    </div>
+    <div style="flex:0.85;display:flex;align-items:center;justify-content:center;">
+      <div class="card" style="text-align:center;width:100%;">
+        <div class="mono" style="font-size:38pt;font-weight:700;color:var(--orange);line-height:1;">~2,000</div>
+        <div class="mono" style="font-size:8pt;font-weight:700;letter-spacing:0.08em;margin-top:8px;">VISITORS GUIDED<br>GLOBAL MATE ROV</div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bar"><span>PROJECT 005 &amp; 006</span><span>DOC 001 / PAGE 07</span></div>
+</div>
+
+<!-- ================= COMBINED: PROJECT 007 + 008 AUTOMATA (REDESIGNED) ================= -->
+<div class="page bold-bg bg-avocado">
+  <div class="about-grid"></div>
+  <div class="about-header">
+    <div class="about-logo">YT.</div>
+    <div class="about-navpill">DOC 001</div>
+  </div>
+  <div class="about-wave"></div>
+  <div style="position:relative;z-index:2;padding:0 0.32in;">
+    <div class="about-kicker">// Project 007 &amp; 008</div>
+    <div class="about-headline sm">
+      <div class="hl-row"><div class="shadow-line">Automata.</div><div class="fill-line">Automata.</div></div>
+    </div>
+  </div>
+
+  <div style="display:flex;gap:0.26in;padding:0 0.32in;position:relative;z-index:2;">
+    <div style="flex:1;">
+      <div class="polaroid rot-2" style="width:100%;">
+        <div class="tape"></div>
+        <img src="img/sm/auto_4bar.jpg" style="width:100%;height:2.3in;">
+        <div class="cap">4-BAR AUTOMATA MECHANISM</div>
+      </div>
+      <div class="badge" style="margin-top:12px;">Project 007</div>
+      <h2 class="proj-title-pop" style="font-size:15.5pt;">4-Bar Mechanism–Inspired Automata</h2>
+      <div class="card tight">
+        <p class="body-text" style="font-size:8.8pt;margin-bottom:0;">Hand-cranked automaton exploring the same planar-linkage kinematics as Project 002, built from cardboard, dowels, and wire — link lengths and pivot placement set the output motion by hand.</p>
+      </div>
+    </div>
+    <div style="flex:1;">
+      <div class="polaroid rot-4" style="width:100%;">
+        <div class="tape"></div>
+        <img src="img/sm/workshop_wide.jpg" style="width:100%;height:2.3in;">
+        <div class="cap">MOTORIZED AUTOMATA, EYE MECHANISM</div>
+      </div>
+      <div class="badge" style="margin-top:12px;">Project 008</div>
+      <h2 class="proj-title-pop" style="font-size:15.5pt;">Motorized 2-Axis Movement Automata</h2>
+      <div class="card tight">
+        <p class="body-text" style="font-size:8.8pt;margin-bottom:0;">A small electric motor drives mechanical linkages for coordinated 2-axis motion — the first real bridge between mechanical design and electrical/control concepts, and a direct precursor to the Project 004 sensor work.</p>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top:0.2in;padding:0 0.32in;position:relative;z-index:2;">
+    <div class="polaroid rot-0" style="width:100%;">
+      <img src="img/sm/auto_2axis.jpg" style="width:100%;height:1.75in;">
+      <div class="cap">AUTOMATA ON DISPLAY, ST. MATTHEW'S MAKERSPACE</div>
+    </div>
+  </div>
+  <div class="footer-bar"><span>PROJECT 007 &amp; 008 — AUTOMATA</span><span>DOC 001 / PAGE 08</span></div>
+</div>
+
+<!-- ================= MAKE-AND-TAKE (REDESIGNED PER REFERENCE) ================= -->
+<div class="page bold-bg bg-orange">
+  <div class="corner-tick tick-tl"></div><div class="corner-tick tick-tr"></div>
+  <div class="hdr-row">
+    <div class="hdr-icon">06</div>
+    <div class="hdr-box"><div class="hdr-title">Make-and-Takes</div></div>
+    <div class="hdr-rule"></div>
+  </div>
+  <div class="blurb-box"><p>A collection of rapid prototypes, hobby builds,<br>and hands-on experiments from my workshop.</p></div>
+
+  <div class="mnt-grid">
+    <div class="mnt-item"><div class="polaroid rot-1"><div class="tape"></div><img src="img/sm/crossbow.jpg"></div><div class="lbl">Crossbow (Ed. Model)</div></div>
+    <div class="mnt-item"><div class="polaroid rot-4"><div class="tape"></div><img src="img/sm/snowball.jpg"></div><div class="lbl">Snowball Launcher</div></div>
+    <div class="mnt-item"><div class="polaroid rot-2"><div class="tape"></div><img src="img/sm/fan1.jpg"></div><div class="lbl">Elastic-Powered Fan</div></div>
+    <div class="mnt-item"><div class="polaroid rot-5"><div class="tape"></div><img src="img/sm/fan2.jpg"></div><div class="lbl">Elastic Fan — V2</div></div>
+    <div class="mnt-item"><div class="polaroid rot-3"><div class="tape"></div><img src="img/sm/launcher.jpg"></div><div class="lbl">Launcher (Bottle Cap)</div></div>
+    <div class="mnt-item"><div class="polaroid rot-6"><div class="tape"></div><img src="img/sm/runningman.jpg"></div><div class="lbl">Running Man Spinner</div></div>
+    <div class="mnt-item"><div class="polaroid rot-2"><div class="tape"></div><img src="img/sm/turmeric.jpg"></div><div class="lbl">Turmeric Anthotypes</div></div>
+    <div class="mnt-item"><div class="polaroid rot-5"><div class="tape"></div><img src="img/sm/remembrance.jpg"></div><div class="lbl">Remembrance Day Stick</div></div>
+  </div>
+
+  <div class="mono" style="margin-top:0.3in;font-size:8pt;color:#fff;font-weight:700;">ALSO IN THE SHOP: TALKING STICK · MICRO:BIT REACTION GAME &amp; DIGITAL DICE · PRINTMAKING (4 TECHNIQUES) · GARDEN BINS &amp; TRELLIS · 3D PRINTING &amp; ALIGNMENT · VACUUM FORMING · CRICUT COASTERS · BALLOON-POWERED CAR</div>
+  <div class="footer-bar"><span>MAKE-AND-TAKE BUILDS</span><span>DOC 001 / PAGE 09</span></div>
+</div>
+
+<!-- ================= CLOSING ================= -->
+<div class="page bold-bg bg-mustard">
+  <div class="corner-tick tick-tl"></div><div class="corner-tick tick-tr"></div>
+  <div class="corner-tick tick-bl"></div><div class="corner-tick tick-br"></div>
+  <div style="display:flex;flex-direction:column;justify-content:center;height:100%;">
+    <div class="badge pop" style="margin-bottom:0.12in;">Thank You</div>
+    <h1 class="headline">LET'S <span class="accent">CONNECT.</span></h1>
+    <div class="card" style="max-width:5.6in;margin-bottom:0.28in;">
+      <p class="body-text" style="margin-bottom:0;">This portfolio is a cross-section of my mechanical design, fabrication, and technical communication work — from funded engineering builds and Marine Institute ROV operations to classroom teaching projects. I'm happy to walk through any of these in more detail.</p>
+    </div>
+    <div class="outcome"><span class="chk">✓</span> Mechanical Engineering (Co-op), Memorial University of Newfoundland</div>
+    <div class="outcome"><span class="chk">✓</span> Engineering Work Term Student, Fisheries &amp; Marine Institute</div>
+    <div class="outcome"><span class="chk">✓</span> Design · Prototyping · Fabrication · Technical Communication</div>
+    <div class="meta-list" style="margin-top:0.3in;"><b>CONTACT</b> YTAHMED@MUN.CA &nbsp;·&nbsp; ST. JOHN'S, NL<br><b>DOCUMENT</b> ENGINEERING PORTFOLIO, VOL. 01, REV. B — 2026</div>
+  </div>
+  <div class="footer-bar"><span>THANK YOU</span><span>DOC 001 / PAGE 10</span></div>
+</div>
+
+</body>
+</html>
