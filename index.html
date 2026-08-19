@@ -1,613 +1,1686 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Yeaal Takian Ahmed — Portfolio</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Mechanical engineering portfolio — Yeaal Takian Ahmed, Memorial University of Newfoundland.">
+<title>Yeaal Takian Ahmed — Mechanical Engineering Portfolio</title>
+<meta name="description" content="Mechanical engineering portfolio of Yeaal Takian Ahmed — design, prototyping and analysis. Memorial University of Newfoundland, B.Eng (Co-op), 2028.">
+<meta name="author" content="Yeaal Takian Ahmed">
+<meta name="theme-color" content="#16123A">
+<meta property="og:title" content="Yeaal Takian Ahmed — Mechanical Engineering Portfolio">
+<meta property="og:description" content="Design, prototyping and analysis. Grant-funded builds, ROV work at the Marine Institute, and classroom engineering at St. Matthew's School.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="img/sm/pedal_hero.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;700&family=Jost:wght@600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Press+Start+2P&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' fill='%2316123A'/><path fill='%23F0611F' d='M3 3h4v4H3zM9 3h4v4H9zM3 9h4v4H3z'/><path fill='%2337B3A9' d='M9 9h4v4H9z'/></svg>">
+
 <style>
-@page { size: 8.5in 11in; margin: 0; }
+/* ============================================================
+   YEAAL TAKIAN AHMED — ENGINEERING PORTFOLIO
+   Single-file build. No frameworks, no build step.
+   Fonts: Google Fonts (CDN). Everything else is local.
+   ============================================================ */
+
+/* ---------- 1. TOKENS ---------- */
 :root{
-  --paper:#F2E6C9; --cream:#D8C7A3; --charcoal:#25231F;
-  --orange:#F04E23; --avocado:#4FA22C; --mustard:#FCAE17; --teal:#0F9C93; --brown:#514638;
-  --orange-cover:#C65A2E; --sage:#57685A;
+  /* palette */
+  --void:#0C0A20;
+  --night:#16123A;
+  --night-2:#211a54;
+  --purple:#6D4FA8;
+  --purple-dk:#4A3480;
+  --orange:#F0611F;
+  --teal:#37B3A9;
+  --teal-dk:#1E7F78;
+  --gold:#F2AC1D;
+  --paper:#F3EBD6;
+  --paper-2:#E4D7B8;
+  --white:#FFFFFF;
+  --ink:#14102E;
+
+  /* semantic */
+  --bg:var(--paper);
+  --fg:var(--ink);
+  --line:var(--ink);
+  --shadow:var(--ink);
+
+  /* type */
+  --f-display:"Silkscreen","Arial Black",Impact,sans-serif;
+  --f-ui:"Press Start 2P","Courier New",monospace;
+  --f-body:"IBM Plex Mono",ui-monospace,"Courier New",monospace;
+
+  /* metrics */
+  --bw:3px;                 /* border width */
+  --sh:6px;                 /* hard shadow offset */
+  --r:0px;                  /* deliberately square: pixel era */
+  --nav-h:60px;
+  --gap:clamp(1rem,2.4vw,1.75rem);
+  --band-y:clamp(3.25rem,7.5vw,6.5rem);
 }
-*{box-sizing:border-box;}
-body{margin:0;font-family:"Inter","Liberation Sans","DejaVu Sans",sans-serif;color:var(--charcoal);background:var(--paper);}
-.mono{font-family:"IBM Plex Mono","Liberation Mono","DejaVu Sans Mono",monospace;}
-.page{width:8.5in;min-height:11in;position:relative;background:var(--paper);page-break-after:always;overflow:visible;padding:0.5in 0.55in;}
-.page:last-child{page-break-after:auto;}
 
-/* bold colour pages */
-.page.bold-bg{color:var(--charcoal);}
-.bg-orange{background:var(--orange);}
-.bg-teal{background:var(--teal);}
-.bg-mustard{background:var(--mustard);}
-.bg-avocado{background:var(--avocado);}
-.bg-paper{background:var(--paper);}
+/* ---------- 2. RESET / BASE ---------- */
+*,*::before,*::after{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;scroll-padding-top:calc(var(--nav-h) + 16px);}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--f-body);
+  font-size:clamp(0.875rem,0.82rem + 0.22vw,0.97rem);
+  line-height:1.72;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block;height:auto;}
+svg{display:block;}
+a{color:inherit;}
+button{font:inherit;color:inherit;}
+h1,h2,h3,h4,p,figure,dl,dd{margin:0;}
+ul{margin:0;padding:0;list-style:none;}
 
-.corner-tick{position:absolute;width:0.26in;height:0.26in;border:2.5px solid var(--charcoal);}
-.tick-tl{top:0.26in;left:0.26in;border-right:none;border-bottom:none;}
-.tick-tr{top:0.26in;right:0.26in;border-left:none;border-bottom:none;}
-.tick-bl{bottom:0.26in;left:0.26in;border-right:none;border-top:none;}
-.tick-br{bottom:0.26in;right:0.26in;border-left:none;border-top:none;}
+/* pixel art crispness — decorative SVG only, never photos */
+.px{shape-rendering:crispEdges;}
 
-.footer-bar{position:absolute;bottom:0.28in;left:0.55in;right:0.55in;display:flex;justify-content:space-between;
-  font-size:8pt;color:var(--charcoal);border-top:2px solid var(--charcoal);padding-top:4px;letter-spacing:0.06em;font-weight:700;}
+::selection{background:var(--gold);color:var(--ink);}
 
-/* ===== SECTION HEADER BAR (sticky-note style) ===== */
-.hdr-row{display:flex;align-items:stretch;gap:0;margin-bottom:0.22in;}
-.hdr-icon{width:0.78in;background:var(--charcoal);color:var(--paper);display:flex;align-items:center;justify-content:center;
-  font-size:22pt;font-weight:700;border:3px solid var(--charcoal);}
-.hdr-box{background:#fff;border:3px solid var(--charcoal);padding:0.14in 0.28in;display:flex;align-items:center;
-  margin-left:0.14in;position:relative;}
-.hdr-box::before{content:"";position:absolute;top:6px;left:6px;right:-6px;bottom:-6px;background:var(--charcoal);z-index:-1;}
-.hdr-title{font-family:"Oswald","Liberation Sans Narrow","Liberation Sans",sans-serif;font-weight:700;text-transform:uppercase;
-  font-size:26pt;letter-spacing:0.01em;color:var(--charcoal);}
-.hdr-rule{flex:1;height:2px;background:var(--charcoal);align-self:center;margin-left:0.2in;}
+:focus-visible{
+  outline:3px solid var(--gold);
+  outline-offset:3px;
+}
 
-.blurb-box{background:#fff;border:3px solid var(--charcoal);padding:0.14in 0.22in;display:inline-block;
-  margin-bottom:0.26in;position:relative;}
-.blurb-box::before{content:"";position:absolute;top:5px;left:5px;right:-5px;bottom:-5px;background:var(--charcoal);z-index:-1;}
-.blurb-box p{margin:0;font-family:"IBM Plex Mono","Liberation Mono","DejaVu Sans Mono",monospace;font-size:9.5pt;line-height:1.5;}
+.skip{
+  position:absolute;left:-9999px;top:0;z-index:999;
+  background:var(--gold);color:var(--ink);border:var(--bw) solid var(--ink);
+  padding:.7rem 1.1rem;font-family:var(--f-ui);font-size:.6rem;
+}
+.skip:focus{left:12px;top:12px;}
 
-/* ===== POLAROID PHOTOS ===== */
-.polaroid{background:#fff;padding:9px 9px 30px 9px;position:relative;display:inline-block;}
-.polaroid::before{content:"";position:absolute;top:6px;left:6px;right:-6px;bottom:-6px;background:rgba(37,35,31,0.55);z-index:-1;}
-.polaroid img{display:block;object-fit:cover;}
-.polaroid .tape{position:absolute;top:-11px;left:50%;width:0.9in;height:0.3in;background:rgba(235,205,90,0.88);
-  transform:translateX(-50%) rotate(-3deg);}
-.polaroid .cap{position:absolute;bottom:6px;left:9px;right:9px;text-align:center;
-  font-family:"IBM Plex Mono","Liberation Mono","DejaVu Sans Mono",monospace;font-size:7.3pt;color:var(--brown);letter-spacing:0.01em;}
-.rot-1{transform:rotate(-3deg);} .rot-2{transform:rotate(2.5deg);} .rot-3{transform:rotate(-1.5deg);}
-.rot-4{transform:rotate(3deg);} .rot-5{transform:rotate(-2.5deg);} .rot-6{transform:rotate(1.5deg);}
-.rot-0{transform:rotate(0deg);}
+.sr{
+  position:absolute;width:1px;height:1px;padding:0;margin:-1px;
+  overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;
+}
 
-/* ===== HARD SHADOW CARD ===== */
-.card{background:#fff;border:3px solid var(--charcoal);padding:0.2in 0.26in;position:relative;}
-.card::before{content:"";position:absolute;top:6px;left:6px;right:-6px;bottom:-6px;background:var(--charcoal);z-index:-1;}
-.card.tight{padding:0.14in 0.2in;}
+/* ---------- 3. LAYOUT PRIMITIVES ---------- */
+.wrap{width:min(1140px,90vw);margin-inline:auto;position:relative;z-index:2;}
+.wrap--wide{width:min(1320px,94vw);}
 
-/* corner-bracket accent — echoes the page-level corner ticks, stamped onto every text box */
-.card::after,.hdr-box::after,.blurb-box::after,.ws-card::after,.soon-card::after{
-  content:"";position:absolute;top:-7px;left:-7px;width:15px;height:15px;
-  border-top:2.5px solid var(--charcoal);border-left:2.5px solid var(--charcoal);z-index:2;}
+.band{position:relative;padding-block:var(--band-y);isolation:isolate;}
+.band--night {background:var(--night); color:var(--paper);}
+.band--void  {background:var(--void);  color:var(--paper);}
+.band--cream {background:var(--paper); color:var(--ink);}
+.band--teal  {background:var(--teal);  color:var(--ink);}
+.band--orange{background:var(--orange);color:var(--ink);}
+.band--purple{background:var(--purple);color:var(--white);}
 
-/* ===== BADGES / TAGS ===== */
-.badge{display:inline-flex;align-items:center;gap:5px;background:var(--charcoal);color:#fff;
-  font-family:"IBM Plex Mono","Liberation Mono","DejaVu Sans Mono",monospace;font-weight:700;font-size:8pt;letter-spacing:0.06em;
-  text-transform:uppercase;padding:5px 11px;border:2px solid var(--charcoal);}
-.badge.pop{background:var(--orange);}
-.outcome{display:flex;align-items:center;gap:8px;background:#fff;border:2.5px solid var(--charcoal);
-  padding:6px 12px;font-family:"IBM Plex Mono","Liberation Mono","DejaVu Sans Mono",monospace;font-size:8.5pt;font-weight:700;
-  text-transform:uppercase;margin-bottom:6px;}
-.outcome .chk{width:16px;height:16px;border:2px solid var(--charcoal);display:flex;align-items:center;justify-content:center;
-  font-size:9pt;flex-shrink:0;}
+/* grid texture for dark bands */
+.tex-grid::before{
+  content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+  background-image:
+    linear-gradient(rgba(140,120,235,.16) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(140,120,235,.16) 1px,transparent 1px);
+  background-size:34px 34px;
+}
+/* dotted paper texture for cream bands */
+.tex-dot::before{
+  content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+  background-image:radial-gradient(var(--paper-2) 1.5px,transparent 1.5px);
+  background-size:9px 9px;opacity:.85;
+}
 
-/* ===== TYPE ===== */
-h1.headline{font-family:"Oswald","Liberation Sans Narrow","Liberation Sans",sans-serif;font-weight:700;text-transform:uppercase;
-  font-size:34pt;line-height:0.98;margin:0 0 0.1in 0;letter-spacing:0.005em;color:var(--charcoal);}
-h1.headline .accent{color:var(--orange);text-decoration:underline;text-decoration-thickness:4px;text-underline-offset:5px;}
-h2.subhead{font-family:"Oswald","Liberation Sans Narrow","Liberation Sans",sans-serif;font-weight:700;text-transform:uppercase;
-  font-size:15pt;margin:0 0 8px 0;letter-spacing:0.02em;}
-p.body-text{font-size:10pt;line-height:1.5;margin:0 0 9px 0;}
-.meta-list{font-family:"IBM Plex Mono","Liberation Mono","DejaVu Sans Mono",monospace;font-size:8pt;line-height:1.7;text-transform:uppercase;}
-.meta-list b{font-weight:700;}
+/* dithered transition between two bands — the 90s way to blend colours */
+.dither{height:24px;position:relative;background:var(--to);border:0;margin:0;}
+.dither::before,.dither::after{content:"";position:absolute;left:0;right:0;height:8px;}
+.dither::before{
+  top:0;
+  background-image:repeating-conic-gradient(var(--from) 0% 25%,transparent 0% 50%);
+  background-size:8px 8px;
+}
+.dither::after{
+  top:8px;
+  background-image:radial-gradient(var(--from) 40%,transparent 42%);
+  background-size:8px 8px;
+}
 
-/* ===== INDEX ===== */
-.index-row{display:flex;align-items:baseline;padding:7px 8px;background:#fff;border:2px solid var(--charcoal);margin-bottom:5px;}
-.index-num{font-family:"IBM Plex Mono","Liberation Mono","DejaVu Sans Mono",monospace;color:var(--orange);font-weight:700;width:0.6in;font-size:10.5pt;}
-.index-title{font-family:"Oswald","Liberation Sans Narrow","Liberation Sans",sans-serif;font-weight:700;text-transform:uppercase;font-size:11.5pt;flex:1;}
-.index-tier{font-family:"IBM Plex Mono","Liberation Mono","DejaVu Sans Mono",monospace;font-size:7pt;color:var(--brown);text-transform:uppercase;}
-.index-cat{display:inline-block;background:var(--charcoal);color:#fff;font-family:"IBM Plex Mono","Liberation Mono","DejaVu Sans Mono",monospace;
-  font-size:8.5pt;text-transform:uppercase;letter-spacing:0.12em;padding:4px 10px;margin:0.16in 0 0.08in 0;}
+/* ---------- 4. TYPE ---------- */
+.kicker{
+  font-family:var(--f-ui);
+  font-size:clamp(.52rem,.48rem + .18vw,.63rem);
+  letter-spacing:.08em;line-height:1.8;
+  color:var(--gold);
+  margin-bottom:1.1rem;
+  display:flex;align-items:center;gap:.7rem;
+}
+.kicker::after{content:"";flex:1;height:3px;background:currentColor;opacity:.4;max-width:180px;}
+.band--cream .kicker{color:var(--orange);}
+.band--teal .kicker{color:var(--ink);}
+.band--orange .kicker{color:var(--ink);}
 
-/* ===== BRIEF / MAKE-AND-TAKE GRID ===== */
-.mnt-grid{display:flex;flex-wrap:wrap;gap:0.16in 0.2in;justify-content:flex-start;}
-.mnt-item{width:2.28in;text-align:center;}
-.mnt-item .polaroid{width:2.28in;}
-.mnt-item .polaroid img{width:100%;height:1.65in;}
-.mnt-item .lbl{margin-top:10px;font-family:"Oswald","Liberation Sans Narrow","Liberation Sans",sans-serif;font-weight:700;
-  text-transform:uppercase;font-size:8.7pt;}
+/* big pixel headline with hard offset shadow (reference's key move) */
+.h-sect{
+  font-family:var(--f-display);font-weight:700;
+  text-transform:uppercase;
+  font-size:clamp(1.55rem,.95rem + 3.1vw,2.95rem);
+  line-height:1.05;letter-spacing:-.01em;
+  margin-bottom:1.4rem;
+}
+.h-sect .ln{display:block;position:relative;}
+.h-sect .ln::before{
+  content:attr(data-t);position:absolute;left:4px;top:4px;z-index:-1;
+  color:var(--ink);
+}
+.band--night .h-sect,.band--void .h-sect{color:var(--paper);}
+.band--night .h-sect .ln::before,.band--void .h-sect .ln::before{color:var(--purple);}
+.band--cream .h-sect{color:var(--ink);}
+.band--cream .h-sect .ln::before{color:var(--orange);}
+.band--teal .h-sect{color:var(--paper);}
+.band--purple .h-sect{color:var(--white);}
+.band--purple .h-sect .ln::before{color:var(--ink);}
 
-/* ===== ELECTRICAL/FAB no-photo cards ===== */
-.soon-card{background:#fff;border:3px solid var(--charcoal);padding:0.18in;width:2.15in;position:relative;}
-.soon-card::before{content:"";position:absolute;top:5px;left:5px;right:-5px;bottom:-5px;background:var(--charcoal);z-index:-1;}
-.soon-card.wide{width:100%;}
-.soon-badge{display:inline-block;background:var(--mustard);border:2px solid var(--charcoal);font-family:"IBM Plex Mono","Liberation Mono","DejaVu Sans Mono",monospace;
-  font-size:7pt;font-weight:700;text-transform:uppercase;padding:3px 8px;margin-bottom:8px;}
-.soon-title{font-family:"Oswald","Liberation Sans Narrow","Liberation Sans",sans-serif;font-weight:700;text-transform:uppercase;font-size:11pt;margin-bottom:4px;}
-.soon-text{font-size:8.3pt;line-height:1.4;}
-.fab-row{display:flex;flex-wrap:wrap;gap:0.18in;}
+.lede{
+  font-size:clamp(.95rem,.9rem + .3vw,1.1rem);
+  line-height:1.65;max-width:60ch;
+}
+.prose p + p{margin-top:.95rem;}
+.prose{max-width:66ch;}
 
-/* ===== COVER (kept from before, untouched look) ===== */
-.cover{background:var(--paper);display:flex;flex-direction:column;justify-content:center;}
-.cover-grid{position:absolute;top:0;left:0;right:0;bottom:0;
-  background-image:linear-gradient(var(--cream) 1px, transparent 1px),linear-gradient(90deg, var(--cream) 1px, transparent 1px);
-  background-size:0.35in 0.35in;opacity:0.55;}
-.cover-content{position:relative;z-index:2;padding-left:0.15in;}
-.cover-kicker{font-family:"IBM Plex Mono","Liberation Mono","DejaVu Sans Mono",monospace;font-size:10pt;letter-spacing:0.25em;color:var(--orange-cover);margin-bottom:0.15in;}
-.cover-title{font-family:"Oswald","Liberation Sans Narrow","Liberation Sans",sans-serif;font-weight:700;text-transform:uppercase;
-  font-size:64pt;line-height:0.92;color:var(--charcoal);letter-spacing:0.01em;margin:0;}
-.cover-title span{color:var(--orange-cover);}
-.cover-sub{font-family:"IBM Plex Mono","Liberation Mono","DejaVu Sans Mono",monospace;font-size:12.5pt;letter-spacing:0.12em;color:var(--brown);
-  margin-top:0.22in;text-transform:uppercase;}
-.cover-line{width:2.2in;height:5px;background:var(--orange-cover);margin:0.32in 0;}
-.cover-meta{margin-top:0.5in;display:flex;gap:0.6in;}
-.cover-meta div{font-family:"IBM Plex Mono","Liberation Mono","DejaVu Sans Mono",monospace;font-size:8.5pt;color:var(--brown);text-transform:uppercase;letter-spacing:0.05em;}
-.cover-meta b{display:block;color:var(--charcoal);font-size:9.5pt;margin-bottom:2px;}
-.cover .footer-bar{border-top:1px solid var(--brown);color:var(--brown);font-weight:400;}
+.mono-label{
+  font-family:var(--f-ui);font-size:.55rem;letter-spacing:.06em;
+  text-transform:uppercase;line-height:1.9;
+}
 
-/* ===== DOC-STYLE PAGES (index + project spec sheets) ===== */
-.doc-topbar{background:var(--sage);color:#fff;font-family:"IBM Plex Mono","Liberation Mono","DejaVu Sans Mono",monospace;
-  font-size:10.5pt;font-weight:700;letter-spacing:0.18em;padding:8px 16px;display:inline-block;margin-bottom:0.16in;}
-.doc-rule{height:2px;background:var(--charcoal);margin-bottom:0.3in;}
-.doc-h1{font-family:"Oswald","Liberation Sans Narrow","Liberation Sans",sans-serif;font-weight:700;text-transform:uppercase;
-  font-size:38pt;color:var(--charcoal);margin:0 0 0.35in 0;letter-spacing:0.005em;}
-.doc-h1 span{color:var(--sage);}
-.doc-cat{display:inline-block;background:var(--sage);color:#fff;font-family:"IBM Plex Mono","Liberation Mono","DejaVu Sans Mono",monospace;
-  font-size:9pt;letter-spacing:0.1em;text-transform:uppercase;padding:6px 12px;margin:0.2in 0 0.1in 0;}
-.doc-row{display:flex;align-items:center;padding:11px 12px;background:var(--cream);border-bottom:2px solid var(--charcoal);}
-.doc-row .dnum{font-family:"IBM Plex Mono","Liberation Mono","DejaVu Sans Mono",monospace;color:var(--orange-cover);font-weight:700;width:0.7in;font-size:12pt;}
-.doc-row .dtitle{font-family:"Oswald","Liberation Sans Narrow","Liberation Sans",sans-serif;font-weight:700;text-transform:uppercase;font-size:13.5pt;flex:1;}
-.doc-row .dtag{font-family:"IBM Plex Mono","Liberation Mono","DejaVu Sans Mono",monospace;font-size:8pt;color:var(--brown);text-transform:uppercase;}
-.doc-brieftext{font-size:10pt;line-height:1.7;font-family:"Inter","Liberation Sans","DejaVu Sans",sans-serif;color:var(--charcoal);font-weight:700;text-transform:uppercase;}
+/* ---------- 5. NAV ---------- */
+.nav{
+  position:sticky;top:0;z-index:80;
+  background:var(--night);
+  border-bottom:var(--bw) solid var(--ink);
+}
+.nav__in{
+  width:min(1320px,94vw);margin-inline:auto;
+  min-height:var(--nav-h);
+  display:flex;align-items:center;gap:1rem;
+}
+.brand{
+  display:flex;align-items:center;gap:.6rem;
+  text-decoration:none;color:var(--paper);
+  font-family:var(--f-ui);font-size:.62rem;line-height:1.5;letter-spacing:.04em;
+  padding:.35rem 0;
+}
+.brand__mark{width:28px;height:28px;flex:none;}
+.brand b{display:block;font-weight:400;color:var(--teal);}
 
-.doc-projhead{display:flex;justify-content:space-between;align-items:flex-start;border-bottom:3px solid var(--orange-cover);padding-bottom:0.16in;margin-bottom:0.28in;}
-.doc-projnum{font-family:"IBM Plex Mono","Liberation Mono","DejaVu Sans Mono",monospace;color:var(--orange-cover);font-weight:700;font-size:11pt;letter-spacing:0.12em;margin-bottom:4px;}
-.doc-projtitle{font-family:"Oswald","Liberation Sans Narrow","Liberation Sans",sans-serif;font-weight:700;text-transform:uppercase;font-size:29pt;line-height:1.02;color:var(--charcoal);margin:0;}
-.doc-projsub{font-family:"IBM Plex Mono","Liberation Mono","DejaVu Sans Mono",monospace;font-size:9.5pt;letter-spacing:0.08em;color:var(--brown);text-transform:uppercase;margin-top:6px;}
-.doc-metablock{font-family:"IBM Plex Mono","Liberation Mono","DejaVu Sans Mono",monospace;font-size:8.3pt;text-transform:uppercase;text-align:right;
-  line-height:2;border-left:2px solid var(--orange-cover);padding-left:0.2in;white-space:nowrap;}
-.doc-metablock b{font-weight:700;}
-.doc-photo{border:2px solid var(--charcoal);background:#fff;padding:5px;}
-.doc-photo img{width:100%;display:block;object-fit:cover;}
-.doc-photo-cap{font-family:"IBM Plex Mono","Liberation Mono","DejaVu Sans Mono",monospace;font-size:7.8pt;color:var(--brown);text-transform:uppercase;margin-top:7px;letter-spacing:0.02em;}
-.doc-spec{border-left:3px solid var(--orange-cover);padding-left:0.16in;font-family:"IBM Plex Mono","Liberation Mono","DejaVu Sans Mono",monospace;font-size:8.5pt;line-height:2;text-transform:uppercase;margin-top:0.22in;}
-.doc-spec b{font-weight:700;}
-.doc-body p{font-size:10.5pt;line-height:1.65;margin:0 0 12px 0;color:var(--charcoal);font-family:"Inter","Liberation Sans","DejaVu Sans",sans-serif;}
+.nav__links{
+  display:flex;align-items:center;gap:clamp(.7rem,1.6vw,1.5rem);
+  margin-left:auto;
+}
+.nav__link{
+  font-family:var(--f-ui);font-size:.58rem;letter-spacing:.04em;
+  text-transform:uppercase;text-decoration:none;color:var(--paper);
+  padding:.5rem .1rem;position:relative;white-space:nowrap;
+}
+.nav__link::after{
+  content:"";position:absolute;left:0;right:0;bottom:.15rem;height:3px;
+  background:var(--orange);transform:scaleX(0);transform-origin:left;
+  transition:transform .22s steps(4);
+}
+.nav__link:hover::after,.nav__link:focus-visible::after{transform:scaleX(1);}
+.nav__link[aria-current="true"]{color:var(--orange);}
+.nav__link[aria-current="true"]::after{transform:scaleX(1);}
 
-/* ===== ABOUT PAGE — retro fashion-poster style ===== */
-.about-page{background:var(--teal);}
-.about-grid{position:absolute;top:0;left:0;right:0;bottom:0;
-  background-image:linear-gradient(rgba(37,35,31,0.14) 1px, transparent 1px),linear-gradient(90deg, rgba(37,35,31,0.14) 1px, transparent 1px);
-  background-size:0.3in 0.3in;}
-.about-header{background:var(--paper);padding:0.16in 0.32in;display:flex;align-items:center;justify-content:space-between;position:relative;z-index:2;}
-.about-logo{background:var(--orange);color:var(--charcoal);font-family:"IBM Plex Mono","Liberation Mono","DejaVu Sans Mono",monospace;font-weight:700;font-size:9pt;letter-spacing:0.06em;padding:8px 14px;text-transform:uppercase;}
-.about-tabs{display:flex;gap:0.32in;font-family:"Inter","Liberation Sans",sans-serif;font-weight:700;font-size:8.5pt;letter-spacing:0.05em;text-transform:uppercase;color:var(--charcoal);}
-.about-navpill{background:var(--charcoal);color:var(--paper);font-family:"IBM Plex Mono","Liberation Mono","DejaVu Sans Mono",monospace;font-size:8pt;font-weight:700;padding:7px 16px;letter-spacing:0.05em;}
-.about-wave{width:100%;height:0.3in;position:relative;z-index:2;margin-bottom:0.15in;
-  background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 60" preserveAspectRatio="none"><path d="M0,0 L1200,0 L1200,18 C1000,55 900,5 750,26 C600,48 500,8 350,30 C230,50 120,12 0,34 Z" fill="%23F2E6C9"/></svg>');
-  background-size:100% 100%;background-repeat:no-repeat;}
-.about-kicker{font-family:"IBM Plex Mono","Liberation Mono","DejaVu Sans Mono",monospace;font-size:10.5pt;font-weight:700;letter-spacing:0.15em;color:var(--mustard);text-transform:uppercase;margin:0.15in 0 0.12in 0;}
-.about-headline{position:relative;margin-bottom:0.22in;}
-.about-headline .hl-row{position:relative;line-height:0.94;}
-.about-headline .shadow-line,.about-headline .fill-line{
-  font-family:'Jost','URW Gothic','TeX Gyre Adventor',"Liberation Sans Narrow",sans-serif;font-weight:700;text-transform:uppercase;
-  font-size:46pt;letter-spacing:0.005em;margin:0;white-space:nowrap;}
-.about-headline .shadow-line{position:absolute;top:5px;left:5px;color:var(--charcoal);z-index:1;}
-.about-headline .fill-line{position:relative;color:var(--paper);z-index:2;}
-.about-headline.sm .shadow-line,.about-headline.sm .fill-line{font-size:27pt;}
-.about-headline.sm .shadow-line{top:3px;left:3px;}
-.proj-title-pop{font-family:'Jost','URW Gothic','TeX Gyre Adventor',"Liberation Sans Narrow",sans-serif;font-weight:700;
-  text-transform:uppercase;font-size:21pt;line-height:1.05;letter-spacing:0.005em;color:var(--charcoal);
-  margin:6px 0 12px 0;border-bottom:5px solid var(--orange);padding-bottom:7px;display:inline-block;}
-.about-pill{display:inline-block;font-family:"Inter","Liberation Sans",sans-serif;font-weight:700;font-size:9.5pt;text-transform:uppercase;
-  padding:10px 22px;letter-spacing:0.03em;}
-.about-pill.solid{background:var(--charcoal);color:var(--paper);}
-.about-pill.outline{background:transparent;border:2px solid var(--charcoal);color:var(--charcoal);}
-.about-photo-block{position:relative;width:3.1in;height:4.7in;}
-.about-photo-back{position:absolute;top:0.24in;right:-0.14in;width:2.7in;height:4.3in;background:var(--orange);z-index:1;}
-.about-photo-mat{position:absolute;top:0;left:0;z-index:3;width:3.1in;height:4.7in;
-  background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 300" preserveAspectRatio="none"><path d="M12,20 Q100,-8 188,20 Q205,80 195,150 Q206,220 188,282 Q100,308 12,282 Q-6,220 5,150 Q-6,80 12,20 Z" fill="%23F2E6C9"/></svg>');
-  background-size:100% 100%;padding:0.22in;}
-.about-photo-mat img{width:100%;height:100%;object-fit:cover;display:block;}
-.starburst-wrap{position:absolute;bottom:-0.3in;left:-0.45in;width:1.6in;height:1.6in;z-index:4;transform:rotate(-8deg);}
-.starburst-bg{position:absolute;top:0;left:0;width:100%;height:100%;
-  background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><polygon points="100.0,5.0 115.1,33.7 141.2,14.4 142.4,46.8 174.3,40.8 161.3,70.5 192.6,78.9 168.0,100.0 192.6,121.1 161.3,129.5 174.3,159.2 142.4,153.2 141.2,185.6 115.1,166.3 100.0,195.0 84.9,166.3 58.8,185.6 57.6,153.2 25.7,159.2 38.7,129.5 7.4,121.1 32.0,100.0 7.4,78.9 38.7,70.5 25.7,40.8 57.6,46.8 58.8,14.4 84.9,33.7" fill="%23FCAE17"/></svg>');
-  background-size:100% 100%;}
-.starburst-text{position:absolute;top:0;left:0;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;
-  font-family:"IBM Plex Mono","Liberation Mono","DejaVu Sans Mono",monospace;font-weight:700;font-size:10.5pt;color:var(--charcoal);text-align:center;line-height:1.3;z-index:5;}
+.nav__cta{
+  font-family:var(--f-ui);font-size:.58rem;text-decoration:none;
+  color:var(--teal);border:var(--bw) solid var(--teal);
+  padding:.6rem .9rem;white-space:nowrap;
+  transition:background .18s steps(3),color .18s steps(3);
+}
+.nav__cta:hover,.nav__cta:focus-visible{background:var(--teal);color:var(--night);}
 
-/* ===== workspace grid (kept clean/technical) ===== */
-.ws-grid{display:flex;flex-wrap:wrap;gap:0.15in;margin-top:0.08in;justify-content:center;}
-.ws-card{width:2.55in;border:3px solid var(--charcoal);background:#fff;padding:5px;position:relative;}
-.ws-card::before{content:"";position:absolute;top:5px;left:5px;right:-5px;bottom:-5px;background:var(--charcoal);z-index:-1;}
-.ws-card img{width:100%;height:1.62in;object-fit:contain;background:#fff;display:block;}
-.ws-card-cap{font-family:"IBM Plex Mono","Liberation Mono","DejaVu Sans Mono",monospace;font-size:7.3pt;color:var(--brown);text-transform:uppercase;margin-top:5px;}
-</style>
-<style>
-/* web fallback: browsers off Linux won't have Liberation/DejaVu, so these substitutes load first */
-body{background:#1c1a17;}
-.site-wrap{max-width:8.5in;margin:0 auto;background:transparent;}
-.page{margin:0 auto 0.4in auto;box-shadow:0 12px 34px rgba(0,0,0,0.45);}
+.nav__burger{
+  margin-left:auto;display:none;
+  width:44px;height:38px;background:transparent;
+  border:var(--bw) solid var(--paper);cursor:pointer;
+  padding:0;place-items:center;
+}
+.nav__burger span,.nav__burger span::before,.nav__burger span::after{
+  display:block;width:18px;height:3px;background:var(--paper);content:"";
+}
+.nav__burger span{position:relative;}
+.nav__burger span::before{position:absolute;top:-6px;}
+.nav__burger span::after{position:absolute;top:6px;}
+
+/* ---------- 6. RIGHT ICON RAIL ---------- */
+.rail{
+  position:fixed;right:16px;top:50%;transform:translateY(-50%);
+  z-index:70;display:none;flex-direction:column;gap:.4rem;
+}
+.rail__item{
+  display:grid;justify-items:center;gap:5px;
+  text-decoration:none;color:var(--paper);
+  font-family:var(--f-ui);font-size:.44rem;letter-spacing:.03em;
+  padding:.55rem .45rem;width:74px;
+  border:var(--bw) solid transparent;
+  transition:border-color .18s steps(3),background .18s steps(3);
+}
+.rail__item svg{width:26px;height:26px;color:var(--gold);}
+.rail__item:hover,.rail__item:focus-visible{
+  background:rgba(20,16,46,.75);border-color:var(--gold);
+}
+.rail__item[aria-current="true"]{background:var(--ink);border-color:var(--orange);}
+.rail__item[aria-current="true"] svg{color:var(--orange);}
+@media (min-width:1460px){ .rail{display:flex;} }
+
+/* ---------- 7. BUTTONS ---------- */
+.btn{
+  display:inline-flex;align-items:center;gap:.55rem;
+  font-family:var(--f-ui);font-size:.6rem;letter-spacing:.03em;
+  text-transform:uppercase;text-decoration:none;
+  padding:.95rem 1.3rem;cursor:pointer;
+  border:var(--bw) solid var(--ink);
+  background:var(--teal);color:var(--ink);
+  box-shadow:var(--sh) var(--sh) 0 var(--ink);
+  transition:transform .12s steps(2),box-shadow .12s steps(2);
+}
+.btn:hover,.btn:focus-visible{transform:translate(-2px,-2px);box-shadow:8px 8px 0 var(--ink);}
+.btn:active{transform:translate(4px,4px);box-shadow:2px 2px 0 var(--ink);}
+.btn--ghost{background:transparent;color:var(--orange);border-color:var(--orange);box-shadow:var(--sh) var(--sh) 0 var(--ink);}
+.btn--ghost:hover,.btn--ghost:focus-visible{background:var(--orange);color:var(--ink);border-color:var(--ink);}
+.btn--gold{background:var(--gold);}
+.btn--ink{background:var(--ink);color:var(--paper);}
+.btn svg{width:14px;height:14px;}
+
+/* ---------- 8. WINDOW CHROME (the core component) ---------- */
+.win{
+  background:var(--white);
+  color:var(--ink);
+  border:var(--bw) solid var(--ink);
+  box-shadow:var(--sh) var(--sh) 0 var(--ink);
+  position:relative;
+}
+.win__bar{
+  display:flex;align-items:center;gap:.6rem;
+  background:var(--purple);color:var(--white);
+  border-bottom:var(--bw) solid var(--ink);
+  padding:.5rem .7rem;
+  font-family:var(--f-ui);font-size:.55rem;letter-spacing:.03em;
+  text-transform:uppercase;
+}
+.win__name{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.win__btns{margin-left:auto;display:flex;gap:5px;flex:none;}
+.win__btns i{
+  width:15px;height:13px;display:block;
+  border:2px solid var(--ink);background:var(--paper);
+  position:relative;
+}
+.win__btns i::before{
+  content:"";position:absolute;left:2px;right:2px;bottom:1px;height:2px;background:var(--ink);
+}
+.win__btns i.sq::before{inset:2px;height:auto;border:2px solid var(--ink);background:none;bottom:auto;}
+.win__btns i.x::before{
+  inset:0;height:auto;background:none;
+  background-image:linear-gradient(45deg,transparent 44%,var(--ink) 44% 56%,transparent 56%),
+                   linear-gradient(-45deg,transparent 44%,var(--ink) 44% 56%,transparent 56%);
+}
+.win__body{padding:clamp(1rem,2.4vw,1.6rem);}
+.win--teal  .win__bar{background:var(--teal-dk);}
+.win--orange .win__bar{background:var(--orange);color:var(--ink);}
+.win--ink   .win__bar{background:var(--ink);}
+.win--cream{background:var(--paper);}
+
+/* interactive window (links) */
+a.win{text-decoration:none;color:inherit;display:block;
+  transition:transform .14s steps(2),box-shadow .14s steps(2);}
+a.win:hover,a.win:focus-visible{transform:translate(-3px,-3px);box-shadow:9px 9px 0 var(--ink);}
+
+/* ---------- 9. CHIPS / BADGES / SPECS ---------- */
+.chip{
+  display:inline-flex;align-items:center;gap:.4rem;
+  font-family:var(--f-ui);font-size:.5rem;letter-spacing:.03em;
+  text-transform:uppercase;
+  background:var(--ink);color:var(--paper);
+  border:2px solid var(--ink);padding:.45rem .6rem;
+}
+.chip--gold{background:var(--gold);color:var(--ink);}
+.chip--orange{background:var(--orange);color:var(--ink);}
+.chip--teal{background:var(--teal);color:var(--ink);}
+.chip--out{background:transparent;color:currentColor;border-color:currentColor;}
+
+.chips{display:flex;flex-wrap:wrap;gap:.45rem;}
+
+/* checked outcome line */
+.tick{
+  display:flex;align-items:center;gap:.6rem;
+  background:var(--white);color:var(--ink);border:2px solid var(--ink);
+  padding:.5rem .7rem;font-size:.78rem;font-weight:600;
+  text-transform:uppercase;letter-spacing:.02em;line-height:1.35;
+}
+.tick svg{width:15px;height:15px;flex:none;color:var(--teal-dk);}
+
+/* spec sheet key/value strip */
+.spec{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:0;border:2px solid var(--ink);background:var(--ink);
+  margin:0 0 1.15rem;
+}
+.spec > div{background:var(--paper);color:var(--ink);padding:.6rem .75rem;}
+.spec dt{
+  font-family:var(--f-ui);font-size:.45rem;letter-spacing:.04em;
+  color:var(--purple-dk);margin-bottom:.35rem;
+}
+.spec dd{font-size:.74rem;font-weight:600;text-transform:uppercase;line-height:1.4;letter-spacing:.01em;}
+
+/* ---------- 10. IMAGE FRAMES ---------- */
+.shot{
+  border:var(--bw) solid var(--ink);background:var(--white);padding:6px;
+  box-shadow:var(--sh) var(--sh) 0 var(--ink);
+}
+.shot img{width:100%;height:auto;object-fit:cover;background:var(--paper-2);}
+.shot--fit img{object-fit:contain;background:var(--white);}
+.shot figcaption{
+  font-family:var(--f-ui);font-size:.45rem;letter-spacing:.03em;
+  text-transform:uppercase;color:var(--purple-dk);
+  padding:.6rem .2rem .15rem;line-height:1.7;
+}
+.ar-1  img{aspect-ratio:1/1;}
+.ar-43 img{aspect-ratio:4/3;}
+.ar-34 img{aspect-ratio:3/4;}
+.ar-32 img{aspect-ratio:3/2;}
+.ar-65 img{aspect-ratio:6/5;}
+.ar-169 img{aspect-ratio:16/9;}
+
+/* ---------- 11. HERO ---------- */
+.hero{padding-block:clamp(2.5rem,6vw,4.5rem) clamp(3rem,7vw,5.5rem);overflow:hidden;}
+.hero__grid{
+  display:grid;grid-template-columns:1.02fr .98fr;
+  gap:clamp(1.5rem,4vw,3.25rem);align-items:center;
+}
+.hero__kick{
+  font-family:var(--f-ui);font-size:clamp(.5rem,.46rem + .2vw,.62rem);
+  color:var(--gold);letter-spacing:.06em;margin-bottom:1.1rem;
+}
+.hero__kick .caret{
+  display:inline-block;width:.6em;height:1em;background:var(--gold);
+  vertical-align:-.14em;margin-left:.3em;
+}
+.hero h1{
+  font-family:var(--f-display);font-weight:700;text-transform:uppercase;
+  line-height:1.02;letter-spacing:-.02em;margin-bottom:1.35rem;
+}
+.hero h1 .l1,.hero h1 .l2{display:block;position:relative;}
+.hero h1 .l1{
+  font-size:clamp(2.6rem,1.1rem + 7.6vw,6.4rem);
+  color:var(--orange);
+  text-shadow:5px 5px 0 var(--ink);
+}
+.hero h1 .l2{
+  font-size:clamp(1.2rem,.55rem + 3.3vw,2.75rem);
+  color:var(--teal);
+  text-shadow:4px 4px 0 var(--ink);
+  margin-top:.12em;
+}
+.hero__sub{
+  font-family:var(--f-body);font-weight:600;
+  font-size:clamp(.85rem,.78rem + .35vw,1.1rem);
+  text-transform:uppercase;letter-spacing:.03em;line-height:1.55;
+  color:var(--paper);margin-bottom:1.7rem;
+}
+.hero__sub span{color:var(--teal);}
+.hero__actions{display:flex;flex-wrap:wrap;gap:1rem;margin-bottom:2rem;}
+.hero__foot{display:flex;align-items:center;gap:.85rem;}
+.hero__foot svg{width:34px;height:34px;color:var(--teal);flex:none;}
+.hero__foot p{
+  font-family:var(--f-ui);font-size:.5rem;line-height:2;letter-spacing:.03em;
+  color:var(--paper);text-transform:uppercase;
+}
+
+.hero__stage{position:relative;display:grid;place-items:center;}
+.hero__burst{
+  position:absolute;width:min(115%,560px);aspect-ratio:1;
+  top:-6%;left:50%;transform:translateX(-50%);z-index:0;color:var(--purple);opacity:.9;
+}
+.hero__badge{
+  position:absolute;right:-8px;bottom:-26px;z-index:5;
+  background:var(--purple);color:var(--white);
+  border:var(--bw) solid var(--ink);box-shadow:5px 5px 0 var(--ink);
+  padding:.6rem .9rem;text-align:center;
+}
+.hero__badge small{font-family:var(--f-ui);font-size:.42rem;letter-spacing:.05em;display:block;}
+.hero__badge strong{
+  font-family:var(--f-display);font-weight:700;font-size:1.25rem;
+  display:block;line-height:1.2;color:var(--gold);margin:.15rem 0;
+}
+.spark{position:absolute;color:var(--gold);z-index:1;width:18px;height:18px;}
+
+/* CRT monitor */
+.crt{position:relative;z-index:2;width:min(100%,470px);}
+.crt__case{
+  background:var(--paper-2);border:var(--bw) solid var(--ink);
+  box-shadow:9px 9px 0 var(--ink);padding:14px 14px 10px;
+}
+.crt__screen{
+  position:relative;border:var(--bw) solid var(--ink);
+  background:var(--teal-dk);overflow:hidden;
+}
+.crt__screen img{
+  width:100%;aspect-ratio:5/4;object-fit:cover;object-position:50% 38%;
+  filter:saturate(1.05) contrast(1.03);
+}
+.crt__screen::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:
+    repeating-linear-gradient(to bottom,rgba(10,8,26,.22) 0 2px,transparent 2px 4px),
+    radial-gradient(120% 90% at 50% 40%,transparent 55%,rgba(10,8,26,.45) 100%);
+}
+.crt__glare{
+  position:absolute;left:0;right:0;height:26%;top:-30%;z-index:3;pointer-events:none;
+  background:linear-gradient(to bottom,transparent,rgba(255,255,255,.14),transparent);
+}
+.crt__label{
+  position:absolute;left:10px;bottom:10px;z-index:4;
+  font-family:var(--f-ui);font-size:.5rem;color:var(--white);
+  background:rgba(20,16,46,.72);border:2px solid var(--paper);
+  padding:.35rem .5rem;letter-spacing:.03em;
+}
+.crt__cursor{position:absolute;right:16%;bottom:16%;z-index:4;width:20px;height:26px;}
+.crt__chin{display:flex;align-items:center;gap:8px;padding-top:9px;}
+.crt__chin b{
+  font-family:var(--f-ui);font-size:.42rem;color:var(--purple-dk);
+  letter-spacing:.05em;margin-right:auto;
+}
+.crt__led{width:9px;height:9px;background:var(--teal-dk);border:2px solid var(--ink);}
+.crt__vent{width:34px;height:9px;border:2px solid var(--ink);background:var(--paper);}
+.crt__base{
+  height:18px;margin:0 auto;width:34%;
+  background:var(--paper-2);border:var(--bw) solid var(--ink);border-top:0;
+}
+.crt__kbd{
+  margin:10px auto 0;width:88%;height:44px;
+  background:var(--paper-2);border:var(--bw) solid var(--ink);
+  box-shadow:6px 6px 0 var(--ink);
+  padding:6px;display:grid;gap:3px;grid-template-rows:repeat(3,1fr);
+}
+.crt__kbd span{
+  display:grid;grid-template-columns:repeat(14,1fr);gap:3px;
+}
+.crt__kbd i{background:var(--paper);border:1px solid var(--ink);}
+
+/* ---------- 12. ORANGE INTRO STRIP ---------- */
+.strip{padding-block:clamp(1.6rem,3.4vw,2.4rem);border-block:var(--bw) solid var(--ink);}
+.strip__in{
+  display:grid;grid-template-columns:auto minmax(200px,1.15fr) 1.6fr;
+  gap:clamp(1rem,2.6vw,2.2rem);align-items:center;
+}
+.strip__hi{display:flex;align-items:center;gap:.85rem;}
+.strip__hi svg{width:52px;height:52px;flex:none;}
+.strip__hi b{
+  font-family:var(--f-display);font-weight:700;font-size:clamp(1.45rem,1rem + 1.8vw,2.3rem);
+  text-transform:uppercase;line-height:1.1;letter-spacing:-.01em;
+}
+.strip__txt{
+  font-size:.86rem;line-height:1.65;font-weight:500;
+  border-left:var(--bw) solid var(--ink);padding-left:clamp(.9rem,2vw,1.5rem);
+}
+.strip__caps{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(.6rem,1.6vw,1.2rem);
+  border-left:var(--bw) solid var(--ink);padding-left:clamp(.9rem,2vw,1.5rem);
+}
+.cap{display:grid;justify-items:center;text-align:center;gap:.5rem;}
+.cap__ico{
+  width:46px;height:46px;display:grid;place-items:center;
+  background:var(--paper);border:var(--bw) solid var(--ink);
+  box-shadow:3px 3px 0 var(--ink);
+}
+.cap__ico svg{width:26px;height:26px;color:var(--purple-dk);}
+.cap b{font-family:var(--f-ui);font-size:.44rem;line-height:1.9;letter-spacing:.03em;}
+
+/* ---------- 13. CAPABILITY CARDS ---------- */
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(1rem,2.2vw,1.6rem);}
+.card__ico{
+  height:96px;display:grid;place-items:center;margin-bottom:.9rem;
+}
+.card__ico svg{width:62px;height:62px;color:var(--purple);}
+.cards .win__body h3{
+  font-family:var(--f-ui);font-size:.62rem;letter-spacing:.03em;
+  text-transform:uppercase;margin-bottom:.7rem;
+}
+.cards .win__body p{font-size:.8rem;line-height:1.62;}
+
+/* ---------- 14. ABOUT ---------- */
+.about__grid{display:grid;grid-template-columns:1.25fr .85fr;gap:clamp(1.5rem,3.5vw,3rem);align-items:start;}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:.9rem;margin-top:1.3rem;}
+.stat{
+  background:var(--ink);border:var(--bw) solid var(--ink);
+  box-shadow:5px 5px 0 var(--purple);
+  padding:.9rem .8rem;text-align:center;
+}
+.stat b{
+  display:block;font-family:var(--f-display);font-weight:700;
+  font-size:clamp(1.5rem,1.1rem + 1.6vw,2.2rem);line-height:1.15;color:var(--gold);
+}
+.stat span{
+  display:block;margin-top:.5rem;font-family:var(--f-ui);
+  font-size:.42rem;letter-spacing:.04em;line-height:1.9;color:var(--paper);
+}
+.burst-badge{position:relative;width:150px;height:150px;display:grid;place-items:center;margin:1.4rem auto 0;}
+.burst-badge svg{position:absolute;inset:0;width:100%;height:100%;color:var(--gold);}
+.burst-badge span{
+  position:relative;z-index:2;font-family:var(--f-ui);font-size:.58rem;
+  text-align:center;line-height:2;color:var(--ink);
+}
+.about__side .tick{background:var(--paper);}
+
+/* ---------- 15. PROJECT INDEX ---------- */
+.idx__layout{display:grid;grid-template-columns:1fr 300px;gap:clamp(1.2rem,2.6vw,1.8rem);align-items:start;}
+.feat{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(.8rem,1.8vw,1.2rem);}
+.feat__card{
+  border:var(--bw) solid var(--ink);background:var(--ink);
+  text-decoration:none;color:var(--paper);display:block;
+  transition:transform .14s steps(2);
+}
+.feat__card:hover,.feat__card:focus-visible{transform:translateY(-4px);}
+.feat__card img{width:100%;aspect-ratio:4/3;object-fit:cover;border-bottom:var(--bw) solid var(--ink);}
+.feat__meta{padding:.7rem .75rem .8rem;}
+.feat__meta b{
+  display:block;font-family:var(--f-ui);font-size:.52rem;line-height:1.8;
+  letter-spacing:.02em;text-transform:uppercase;
+}
+.feat__meta span{display:block;font-size:.72rem;color:var(--teal);margin-top:.35rem;text-transform:uppercase;letter-spacing:.04em;}
+
+.idx__list li a{
+  display:flex;align-items:center;gap:.55rem;
+  text-decoration:none;padding:.5rem .3rem;
+  border-bottom:2px solid rgba(20,16,46,.18);
+  font-size:.78rem;text-transform:uppercase;letter-spacing:.02em;line-height:1.35;
+}
+.idx__list li:last-child a{border-bottom:0;}
+.idx__list a:hover,.idx__list a:focus-visible{background:var(--gold);}
+.idx__list em{
+  font-style:normal;font-family:var(--f-ui);font-size:.48rem;
+  color:var(--orange);flex:none;
+}
+.idx__list svg{width:13px;height:13px;flex:none;color:var(--purple);margin-left:auto;}
+
+/* ---------- 16. PROJECT DOCUMENTS ---------- */
+.doc + .doc{margin-top:clamp(1.6rem,3.4vw,2.6rem);}
+.doc__head{border-bottom:var(--bw) solid var(--ink);padding-bottom:.9rem;margin-bottom:1.15rem;}
+.doc__num{font-family:var(--f-ui);font-size:.5rem;color:var(--orange);letter-spacing:.05em;margin-bottom:.55rem;}
+.doc__title{
+  font-family:var(--f-display);font-weight:700;text-transform:uppercase;
+  font-size:clamp(1.05rem,.85rem + 1.15vw,1.6rem);line-height:1.2;letter-spacing:-.01em;
+}
+.doc__sub{
+  font-family:var(--f-ui);font-size:.48rem;letter-spacing:.04em;
+  color:var(--purple-dk);margin-top:.6rem;line-height:1.9;text-transform:uppercase;
+}
+.doc__split{display:grid;grid-template-columns:1.08fr .92fr;gap:clamp(1.1rem,2.6vw,2rem);align-items:start;}
+.doc__split--flip{grid-template-columns:.92fr 1.08fr;}
+.doc__media{display:grid;gap:1.1rem;}
+.doc__media--2{grid-template-columns:1fr 1fr;}
+
+/* flagship feature spread: full-width prose in columns, then paired figures.
+   Avoids the dead column that a 3-paragraph / 2-stacked-image split leaves behind. */
+.doc__cols{columns:2;column-gap:clamp(1.4rem,3.5vw,2.8rem);}
+.doc__cols p{break-inside:avoid;margin:0 0 .95rem;}
+.ticks-row{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem;margin:.5rem 0 1.5rem;}
+.figs-2{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1rem,2.4vw,1.7rem);}
+
+/* signal-path diagram (project 004) */
+.flow{background:var(--ink);border:var(--bw) solid var(--ink);padding:1.1rem;display:grid;gap:.5rem;}
+.flow b{font-family:var(--f-ui);font-size:.48rem;color:var(--gold);letter-spacing:.05em;margin-bottom:.4rem;}
+.flow span{
+  background:var(--paper);color:var(--ink);border:2px solid var(--purple);
+  padding:.5rem .65rem;font-size:.72rem;font-weight:600;
+  text-transform:uppercase;letter-spacing:.03em;text-align:center;
+}
+.flow i{display:block;text-align:center;color:var(--teal);font-style:normal;line-height:1;}
+
+/* big number callout */
+.callout{
+  background:var(--gold);color:var(--ink);border:var(--bw) solid var(--ink);
+  box-shadow:var(--sh) var(--sh) 0 var(--ink);
+  padding:1.3rem 1rem;text-align:center;
+}
+.callout b{display:block;font-family:var(--f-display);font-weight:700;font-size:clamp(1.6rem,1.2rem + 1.9vw,2.5rem);line-height:1.15;color:var(--ink);}
+.callout span{display:block;margin-top:.6rem;font-family:var(--f-ui);font-size:.45rem;line-height:2;letter-spacing:.04em;}
+
+/* workspace drawing-set grid */
+.sheets{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(.8rem,1.8vw,1.25rem);}
+
+/* ---------- 17. MAKE-AND-TAKE GALLERY ---------- */
+.makes{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(.8rem,1.8vw,1.2rem);}
+.make{
+  background:var(--white);border:var(--bw) solid var(--ink);
+  box-shadow:5px 5px 0 var(--ink);padding:6px;
+  transition:transform .14s steps(2),box-shadow .14s steps(2);
+}
+.make:hover{transform:translate(-3px,-3px);box-shadow:8px 8px 0 var(--ink);}
+.make img{width:100%;aspect-ratio:1/1;object-fit:cover;}
+.make b{
+  display:block;font-family:var(--f-ui);font-size:.45rem;line-height:1.9;
+  letter-spacing:.02em;text-transform:uppercase;color:var(--ink);
+  padding:.6rem .15rem .1rem;
+}
+
+/* video tile — sits in the media row as a peer of the stills, same frame and caption */
+.sheets--4{grid-template-columns:repeat(4,1fr);}
+.vid{position:relative;}
+.vid video{
+  display:block;width:100%;height:auto;aspect-ratio:1/1;
+  object-fit:cover;object-position:50% 98%;background:var(--ink);
+}
+.vid__btn{
+  position:absolute;left:8px;bottom:8px;
+  width:34px;height:28px;display:grid;place-items:center;cursor:pointer;
+  background:var(--gold);border:2px solid var(--ink);box-shadow:2px 2px 0 var(--ink);
+  transition:transform .1s steps(2),box-shadow .1s steps(2);
+}
+.vid__btn:hover{transform:translate(-1px,-1px);box-shadow:3px 3px 0 var(--ink);}
+.vid__btn:active{transform:translate(1px,1px);box-shadow:1px 1px 0 var(--ink);}
+.vid__btn svg{width:14px;height:14px;color:var(--ink);}
+.vid__tag{
+  position:absolute;right:8px;top:8px;
+  background:var(--ink);color:var(--gold);
+  font-family:var(--f-ui);font-size:.4rem;letter-spacing:.05em;padding:.32rem .45rem;
+}
+
+/* marquee of remaining builds */
+.marq{
+  margin-top:clamp(1.4rem,3vw,2.2rem);
+  border-block:var(--bw) solid var(--ink);background:var(--gold);color:var(--ink);
+  overflow:hidden;
+}
+.marq__track{
+  display:flex;width:max-content;gap:2.2rem;padding:.7rem 0;
+  font-family:var(--f-ui);font-size:.5rem;letter-spacing:.04em;
+  animation:marq 42s linear infinite;
+}
+.marq__track span{white-space:nowrap;}
+@keyframes marq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ---------- 18. FOOTER ---------- */
+.foot__grid{display:grid;grid-template-columns:1.4fr .8fr 1fr;gap:clamp(1.4rem,3vw,2.6rem);align-items:start;}
+.foot h2{
+  font-family:var(--f-display);font-weight:700;text-transform:uppercase;
+  font-size:clamp(1.3rem,.95rem + 1.8vw,2.2rem);line-height:1.12;letter-spacing:-.01em;margin-bottom:1rem;
+  text-shadow:4px 4px 0 var(--ink);
+}
+.foot p{font-size:.84rem;line-height:1.7;max-width:44ch;margin-bottom:1.3rem;}
+.foot h3{font-family:var(--f-ui);font-size:.55rem;letter-spacing:.04em;margin-bottom:.95rem;color:var(--gold);}
+.foot__list li{margin-bottom:.6rem;}
+.foot__list a{
+  text-decoration:none;font-size:.8rem;text-transform:uppercase;letter-spacing:.03em;
+  border-bottom:2px solid transparent;
+}
+.foot__list a:hover,.foot__list a:focus-visible{border-bottom-color:var(--gold);color:var(--gold);}
+.foot__facts{font-size:.76rem;line-height:1.9;text-transform:uppercase;letter-spacing:.02em;}
+.foot__facts b{color:var(--gold);font-weight:600;}
+.foot__mascot{display:flex;align-items:center;gap:.8rem;margin-top:1.4rem;}
+.foot__mascot svg{width:52px;height:52px;flex:none;}
+.foot__mascot span{
+  background:var(--paper);color:var(--ink);border:var(--bw) solid var(--ink);
+  padding:.5rem .7rem;font-family:var(--f-ui);font-size:.45rem;line-height:1.9;
+}
+.copybar{
+  background:var(--void);color:var(--paper-2);
+  border-top:var(--bw) solid var(--ink);
+  padding:1.1rem 0;text-align:center;
+}
+.copybar p{font-family:var(--f-ui);font-size:.45rem;line-height:2.2;letter-spacing:.04em;}
+.copybar b{color:var(--orange);font-weight:400;}
+
+/* ---------- 19. SCROLL REVEAL ---------- */
+/* Progressive enhancement: content is visible by default. Only once JS confirms
+   IntersectionObserver support (and that motion is welcome) does .js-reveal get set
+   on <html>, which arms the hidden-then-reveal state. No JS = no blank page. */
+.js-reveal .rv{opacity:0;transform:translateY(18px);}
+.js-reveal .rv.in{opacity:1;transform:none;transition:opacity .55s ease-out var(--d,0ms),transform .55s cubic-bezier(.2,.7,.3,1) var(--d,0ms);}
+
+/* ---------- 20. RESPONSIVE ---------- */
+@media (max-width:1080px){
+  .cards{grid-template-columns:repeat(2,1fr);}
+  .strip__in{grid-template-columns:auto 1fr;}
+  .strip__caps{grid-column:1/-1;border-left:0;padding-left:0;border-top:var(--bw) solid var(--ink);padding-top:1.1rem;}
+  .idx__layout{grid-template-columns:1fr;}
+  .sheets{grid-template-columns:repeat(2,1fr);}
+}
 @media (max-width:900px){
-  .site-wrap{max-width:100%;}
-  .page{width:100%!important;min-height:auto!important;transform:scale(1)!important;}
+  .hero__grid{grid-template-columns:1fr;}
+  .hero__stage{order:-1;padding-bottom:1.5rem;}
+  .hero__burst{width:min(108%,380px);}
+  /* absolute badge collided with the keyboard once the stage stacked; put it in flow */
+  .hero__badge{position:static;right:auto;bottom:auto;margin:1.15rem auto 0;width:max-content;}
+  .crt{width:min(100%,380px);}
+  .about__grid{grid-template-columns:1fr;}
+  .doc__split,.doc__split--flip{grid-template-columns:1fr;}
+  .doc__cols{columns:1;}
+  .ticks-row{grid-template-columns:1fr;}
+  .figs-2{grid-template-columns:1fr;}
+  .makes{grid-template-columns:repeat(3,1fr);}
+  .foot__grid{grid-template-columns:1fr 1fr;}
+  .foot__lead{grid-column:1/-1;}
+  .nav__links{
+    position:absolute;top:100%;left:0;right:0;
+    flex-direction:column;align-items:stretch;gap:0;
+    background:var(--night);border-bottom:var(--bw) solid var(--ink);
+    padding:.5rem 5vw 1.1rem;display:none;
+  }
+  .nav.open .nav__links{display:flex;}
+  .nav__link{padding:.9rem .2rem;border-bottom:2px solid rgba(243,235,214,.15);}
+  .nav__link::after{display:none;}
+  .nav__cta{margin-top:.9rem;text-align:center;justify-content:center;}
+  .nav__burger{display:grid;}
+}
+@media (max-width:640px){
+  :root{--sh:5px;--bw:3px;}
+  .strip__in{grid-template-columns:1fr;}
+  .strip__txt{border-left:0;padding-left:0;border-top:var(--bw) solid var(--ink);padding-top:1rem;}
+  .strip__caps{grid-template-columns:repeat(2,1fr);gap:1.1rem;}
+  .cards{grid-template-columns:1fr;}
+  .feat{grid-template-columns:1fr;}
+  .stats{grid-template-columns:1fr;}
+  .makes{grid-template-columns:repeat(2,1fr);}
+  .sheets{grid-template-columns:1fr;}
+  .doc__media--2{grid-template-columns:1fr;}
+  .spec{grid-template-columns:1fr 1fr;}
+  .foot__grid{grid-template-columns:1fr;}
+  .hero__actions .btn{flex:1 1 100%;justify-content:center;}
+  .crt__kbd{height:34px;}
+}
+@media (max-width:400px){
+  .makes{grid-template-columns:1fr;}
+  .spec{grid-template-columns:1fr;}
+}
+
+/* ---------- 21. MOTION PREFERENCES ---------- */
+@media (prefers-reduced-motion: no-preference){
+  html{scroll-behavior:smooth;}
+  .hero__kick .caret{animation:blink 1.05s steps(1) infinite;}
+  .crt__glare{animation:sweep 7.5s linear infinite;}
+  .spark{animation:twinkle 3.2s steps(2) infinite;}
+  .spark:nth-of-type(2){animation-delay:.9s;}
+  .spark:nth-of-type(3){animation-delay:1.8s;}
+  .crt__led{animation:led 2.6s steps(1) infinite;}
+}
+@keyframes blink{0%,50%{opacity:1}51%,100%{opacity:0}}
+@keyframes sweep{0%{top:-30%}55%,100%{top:115%}}
+@keyframes twinkle{0%,100%{opacity:.35;transform:scale(.8)}50%{opacity:1;transform:scale(1)}}
+@keyframes led{0%,70%{background:var(--teal)}71%,100%{background:var(--teal-dk)}}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{
+    animation-duration:.001ms !important;animation-iteration-count:1 !important;
+    transition-duration:.001ms !important;scroll-behavior:auto !important;
+  }
+  .js-reveal .rv{opacity:1;transform:none;}
+  .marq{overflow-x:auto;}
+  .marq__track{animation:none;}
+  .crt__glare{display:none;}
+}
+
+/* ---------- 22. PRINT ---------- */
+@media print{
+  .nav,.rail,.dither,.marq,.crt__kbd,.hero__burst,.spark,.vid__btn,.vid__tag{display:none !important;}
+  body{background:#fff;color:#000;}
+  .band{background:#fff !important;color:#000 !important;padding-block:1rem;break-inside:avoid;}
+  .win,.shot,.btn{box-shadow:none !important;}
+  a{text-decoration:underline;}
 }
 </style>
 </head>
 <body>
 
-<!-- ================= PAGE 1: COVER (UNCHANGED) ================= -->
-<div class="page cover">
-  <div class="cover-grid"></div>
-  <div class="corner-tick tick-tl"></div><div class="corner-tick tick-tr"></div>
-  <div class="corner-tick tick-bl"></div><div class="corner-tick tick-br"></div>
-  <div class="cover-content">
-    <div class="cover-kicker">// ENGINEERING PORTFOLIO — VOLUME 01</div>
-    <h1 class="cover-title">YEAAL TAKIAN<br>AHMED<span>.</span></h1>
-    <div class="cover-line"></div>
-    <div class="cover-sub">Mechanical Engineering &nbsp;•&nbsp; Design / Prototyping / Analysis</div>
-    <div class="cover-meta">
-      <div><b>PROGRAM</b>B.ENG (CO-OP)<br>MECHANICAL — MUN</div>
-      <div><b>BASE</b>ST. JOHN'S, NL</div>
-      <div><b>FOCUS</b>MECH. DESIGN / ROBOTICS / FABRICATION</div>
-      <div><b>YEAR</b>2026</div>
-    </div>
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- ============ PIXEL ICON SPRITE (decorative, 16x16 grid) ============ -->
+<svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute">
+  <defs>
+    <symbol id="i-home" viewBox="0 0 16 16"><path fill="currentColor" fill-rule="evenodd" d="M7 3h2v1H7zM6 4h4v1H6zM5 5h6v1H5zM4 6h8v1H4zM3 7h10v1H3zM2 8h12v1H2zM4 9h8v5H4zM7 11h2v3H7z"/></symbol>
+    <symbol id="i-user" viewBox="0 0 16 16"><path fill="currentColor" d="M6 2h4v1H6zM5 3h6v4H5zM6 7h4v1H6zM7 8h2v1H7zM4 9h8v1H4zM3 10h10v4H3z"/></symbol>
+    <symbol id="i-folder" viewBox="0 0 16 16"><path fill="currentColor" fill-rule="evenodd" d="M2 3h5v1H2zM2 4h12v10H2zM4 6h8v6H4z"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 16 16"><path fill="currentColor" fill-rule="evenodd" d="M1 4h14v9H1zM3 6h10v5H3zM3 5h2v1H3zM5 6h2v1H5zM7 7h2v1H7zM9 6h2v1H9zM11 5h2v1h-2z"/></symbol>
+    <symbol id="i-gear" viewBox="0 0 16 16"><path fill="currentColor" fill-rule="evenodd" d="M6 1h4v2H6zM6 13h4v2H6zM1 6h2v4H1zM13 6h2v4h-2zM3 3h2v2H3zM11 3h2v2h-2zM3 11h2v2H3zM11 11h2v2h-2zM4 4h8v8H4zM6 6h4v4H6z"/></symbol>
+    <symbol id="i-wrench" viewBox="0 0 16 16"><path fill="currentColor" d="M11 1h3v1h-3zM10 2h1v1h-1zM14 2h1v3h-1zM10 3h1v1h-1zM11 4h3v1h-3zM9 5h3v1H9zM8 6h2v1H8zM7 7h2v1H7zM6 8h2v1H6zM5 9h2v1H5zM4 10h2v1H4zM3 11h2v1H3zM2 12h2v2H2z"/></symbol>
+    <symbol id="i-bolt" viewBox="0 0 16 16"><path fill="currentColor" d="M9 2h3v1H9zM8 3h3v1H8zM7 4h3v1H7zM6 5h3v1H6zM5 6h7v1H5zM8 7h3v1H8zM7 8h3v1H7zM6 9h3v1H6zM5 10h3v1H5zM4 11h3v1H4z"/></symbol>
+    <symbol id="i-wave" viewBox="0 0 16 16"><path fill="currentColor" d="M1 5h2v2H1zM4 4h2v2H4zM7 5h2v2H7zM10 4h2v2h-2zM13 5h2v2h-2zM1 10h2v2H1zM4 9h2v2H4zM7 10h2v2H7zM10 9h2v2h-2zM13 10h2v2h-2z"/></symbol>
+    <symbol id="i-check" viewBox="0 0 16 16"><path fill="currentColor" d="M13 3h2v2h-2zM11 5h2v2h-2zM9 7h2v2H9zM7 9h2v2H7zM5 11h2v2H5zM3 9h2v2H3zM1 7h2v2H1z"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 16 16"><path fill="currentColor" d="M2 7h10v2H2zM8 3h2v2H8zM10 5h2v2h-2zM12 7h2v2h-2zM10 9h2v2h-2zM8 11h2v2H8z"/></symbol>
+    <symbol id="i-globe" viewBox="0 0 16 16"><path fill="currentColor" fill-rule="evenodd" d="M5 1h6v1H5zM3 2h10v1H3zM2 3h12v1H2zM1 4h14v7H1zM2 11h12v1H2zM3 12h10v1H3zM5 13h6v1H5zM7 1h2v13H7zM1 6h14v1H1zM1 9h14v1H1z"/></symbol>
+    <symbol id="i-monitor" viewBox="0 0 16 16"><path fill="currentColor" fill-rule="evenodd" d="M1 2h14v10H1zM3 4h10v6H3zM6 12h4v2H6zM4 14h8v1H4z"/></symbol>
+    <symbol id="i-spark" viewBox="0 0 16 16"><path fill="currentColor" d="M7 0h2v5H7zM7 11h2v5H7zM0 7h5v2H0zM11 7h5v2h-5zM5 5h2v2H5zM9 5h2v2H9zM5 9h2v2H5zM9 9h2v2H9z"/></symbol>
+    <symbol id="i-play" viewBox="0 0 16 16"><path fill="currentColor" d="M4 2h2v12H4zM6 4h2v8H6zM8 6h2v4H8zM10 7h2v2h-2z"/></symbol>
+    <symbol id="i-pause" viewBox="0 0 16 16"><path fill="currentColor" d="M4 3h3v10H4zM9 3h3v10H9z"/></symbol>
+    <symbol id="i-star" viewBox="0 0 200 200"><polygon fill="currentColor" points="100,5 115.1,33.7 141.2,14.4 142.4,46.8 174.3,40.8 161.3,70.5 192.6,78.9 168,100 192.6,121.1 161.3,129.5 174.3,159.2 142.4,153.2 141.2,185.6 115.1,166.3 100,195 84.9,166.3 58.8,185.6 57.6,153.2 25.7,159.2 38.7,129.5 7.4,121.1 32,100 7.4,78.9 38.7,70.5 25.7,40.8 57.6,46.8 58.8,14.4 84.9,33.7"/></symbol>
+  </defs>
+</svg>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <div class="nav__in">
+    <a class="brand" href="#top">
+      <svg class="brand__mark px" viewBox="0 0 16 16" aria-hidden="true">
+        <path fill="#37B3A9" d="M5 2h6v1H5zM3 3h10v2H3zM2 5h12v6H2zM3 11h10v2H3zM5 13h6v1H5z"/>
+        <path fill="#F2AC1D" d="M0 7h3v2H0zM13 7h3v2h-3zM2 6h2v1H2zM12 9h2v1h-2z"/>
+        <path fill="#14102E" d="M4 6h2v2H4zM9 9h3v1H9z"/>
+      </svg>
+      <span>YEAAL T.<b>AHMED</b></span>
+    </a>
+
+    <button class="nav__burger" type="button" id="burger" aria-expanded="false" aria-controls="navlinks" aria-label="Open menu"><span></span></button>
+
+    <nav class="nav__links" id="navlinks" aria-label="Primary">
+      <a class="nav__link" data-nav href="#top">Home</a>
+      <a class="nav__link" data-nav href="#about">About</a>
+      <a class="nav__link" data-nav href="#projects">Work</a>
+      <a class="nav__link" data-nav href="#makes">Makes</a>
+      <a class="nav__link" data-nav href="#contact">Contact</a>
+      <a class="nav__cta" href="mailto:ytahmed@mun.ca">Email</a>
+    </nav>
   </div>
-  <div class="footer-bar"><span>ENGINEERING PORTFOLIO — YEAAL T. AHMED</span><span>DOC 001 / REV. B / 2026</span></div>
-</div>
+</header>
 
-<!-- ================= PAGE 2: ABOUT (retro fashion-poster style) ================= -->
-<div class="page about-page">
-  <div class="about-grid"></div>
+<!-- ============ RIGHT ICON RAIL ============ -->
+<nav class="rail" aria-label="Section shortcuts">
+  <a class="rail__item" data-nav href="#top"><svg class="px" viewBox="0 0 16 16" aria-hidden="true"><use href="#i-home"/></svg>Home</a>
+  <a class="rail__item" data-nav href="#about"><svg class="px" viewBox="0 0 16 16" aria-hidden="true"><use href="#i-user"/></svg>About</a>
+  <a class="rail__item" data-nav href="#projects"><svg class="px" viewBox="0 0 16 16" aria-hidden="true"><use href="#i-folder"/></svg>Work</a>
+  <a class="rail__item" data-nav href="#contact"><svg class="px" viewBox="0 0 16 16" aria-hidden="true"><use href="#i-mail"/></svg>Contact</a>
+</nav>
 
-  <div class="about-header">
-    <div class="about-logo">YT.</div>
-    <div class="about-tabs"><span>About</span><span>Projects</span><span>Contact</span></div>
-    <div class="about-navpill">VOL. 01</div>
-  </div>
-  <div class="about-wave"></div>
+<main id="main">
 
-  <div style="display:flex;gap:0.4in;padding:0 0.32in;position:relative;z-index:2;">
-    <div style="flex:1.15;">
-      <div class="about-kicker">// Mechanical Engineering</div>
-      <div class="about-headline">
-        <div class="hl-row"><div class="shadow-line">Designer.</div><div class="fill-line">Designer.</div></div>
-        <div class="hl-row"><div class="shadow-line">Builder.</div><div class="fill-line">Builder.</div></div>
-        <div class="hl-row"><div class="shadow-line">Teacher.</div><div class="fill-line">Teacher.</div></div>
-      </div>
-      <div class="card" style="margin-bottom:0.22in;">
-        <p class="body-text">Third-year Mechanical Engineering co-op student at Memorial University of Newfoundland, currently an Engineering Work Term Student with the Fisheries and Marine Institute's School of Ocean Technology. My work sits at the intersection of mechanical design, fabrication, and teaching people how things work.</p>
-        <p class="body-text" style="margin-bottom:0;">This portfolio spans inspection work with Bureau Veritas Group, educational programming at St. Matthew's School, and design and robotics work at the Marine Institute — plus a long list of smaller builds along the way.</p>
-      </div>
-      <div style="display:flex;gap:0.16in;margin-bottom:0.22in;">
-        <div class="about-pill solid">Contact Me</div>
-        <div class="about-pill outline">View Projects</div>
-      </div>
-      <div class="outcome"><span class="chk">✓</span> YTAHMED@MUN.CA</div>
-      <div class="outcome"><span class="chk">✓</span> ST. JOHN'S, NEWFOUNDLAND &amp; LABRADOR</div>
-      <div style="margin-top:0.5in;display:flex;gap:0.35in;">
-        <div style="text-align:center;">
-          <div class="mono" style="font-size:26pt;font-weight:700;color:var(--paper);line-height:1;">03</div>
-          <div class="mono" style="font-size:7.5pt;font-weight:700;color:var(--charcoal);letter-spacing:0.1em;margin-top:4px;">WORK SETTINGS</div>
+<!-- ============ HERO ============ -->
+<section class="band band--night tex-grid hero" id="top">
+  <div class="wrap wrap--wide">
+    <div class="hero__grid">
+
+      <div class="hero__copy">
+        <p class="hero__kick">// ENGINEERING PORTFOLIO — VOL. 01<span class="caret"></span></p>
+        <h1>
+          <span class="l1">Yeaal</span>
+          <span class="l2">Takian Ahmed</span>
+        </h1>
+        <p class="hero__sub">
+          Mechanical engineering.<br>
+          <span>Design. Prototyping. Analysis.</span>
+        </p>
+        <div class="hero__actions">
+          <a class="btn" href="#projects">
+            <svg class="px" viewBox="0 0 16 16" aria-hidden="true"><use href="#i-folder"/></svg>
+            View Projects
+          </a>
+          <a class="btn btn--ghost" href="#about">About Me</a>
         </div>
-        <div style="text-align:center;">
-          <div class="mono" style="font-size:26pt;font-weight:700;color:var(--paper);line-height:1;">21+</div>
-          <div class="mono" style="font-size:7.5pt;font-weight:700;color:var(--charcoal);letter-spacing:0.1em;margin-top:4px;">BUILDS &amp; PROJECTS</div>
-        </div>
-        <div style="text-align:center;">
-          <div class="mono" style="font-size:26pt;font-weight:700;color:var(--paper);line-height:1;">2026</div>
-          <div class="mono" style="font-size:7.5pt;font-weight:700;color:var(--charcoal);letter-spacing:0.1em;margin-top:4px;">GRAD YEAR</div>
+        <div class="hero__foot">
+          <svg class="px" viewBox="0 0 16 16" aria-hidden="true"><use href="#i-globe"/></svg>
+          <p>B.Eng (Co-op) Mechanical — MUN.<br>St. John's, Newfoundland &amp; Labrador.</p>
         </div>
       </div>
-    </div>
-    <div style="flex:0.9;display:flex;justify-content:center;padding-top:0.1in;">
-      <div class="about-photo-block">
-        <div class="about-photo-back"></div>
-        <div class="about-photo-mat">
-          <img src="img/sm/yeaal_portrait.jpg">
+
+      <div class="hero__stage">
+        <svg class="hero__burst px" viewBox="0 0 200 200" aria-hidden="true"><use href="#i-star"/></svg>
+        <svg class="spark px" style="top:6%;left:2%" viewBox="0 0 16 16" aria-hidden="true"><use href="#i-spark"/></svg>
+        <svg class="spark px" style="bottom:26%;left:-2%" viewBox="0 0 16 16" aria-hidden="true"><use href="#i-spark"/></svg>
+        <svg class="spark px" style="top:20%;right:4%" viewBox="0 0 16 16" aria-hidden="true"><use href="#i-spark"/></svg>
+
+        <div class="crt">
+          <div class="crt__case">
+            <div class="crt__screen">
+              <img src="img/sm/yeaal_portrait.jpg" width="788" height="1400" fetchpriority="high" decoding="async"
+                   alt="Portrait of Yeaal Takian Ahmed">
+              <div class="crt__glare" aria-hidden="true"></div>
+              <span class="crt__label">yeaal.jpg</span>
+              <svg class="crt__cursor px" viewBox="0 0 12 16" aria-hidden="true">
+                <path fill="#14102E" d="M1 0h1v13H1zM2 12h1v1H2zM2 1h1v1H2zM3 2h1v1H3zM4 3h1v1H4zM5 4h1v1H5zM6 5h1v1H6zM7 6h1v1H7zM8 7h1v1H8zM9 8h1v3H9zM6 10h3v1H6zM5 11h1v1H5zM6 12h1v3H6zM7 15h2v1H7zM8 12h1v3H8zM3 11h3v1H3z"/>
+                <path fill="#FFFFFF" d="M2 2h1v10H2zM3 3h1v8H3zM4 4h1v6H4zM5 5h1v5H5zM6 6h1v4H6zM7 7h1v3H7zM8 8h1v3H8zM6 11h2v4H6z"/>
+              </svg>
+            </div>
+            <div class="crt__chin">
+              <b>MUN &middot; MECHANICAL</b>
+              <span class="crt__vent" aria-hidden="true"></span>
+              <span class="crt__led" aria-hidden="true"></span>
+            </div>
+          </div>
+          <div class="crt__base" aria-hidden="true"></div>
+          <div class="crt__kbd" aria-hidden="true">
+            <span><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+            <span><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+            <span><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+          </div>
         </div>
-        <div class="starburst-wrap">
-          <div class="starburst-bg"></div>
-          <div class="starburst-text">CO-OP<br>2026</div>
+
+        <div class="hero__badge">
+          <small>CLASS OF</small>
+          <strong>2028</strong>
+          <small>B.ENG MECHANICAL</small>
         </div>
       </div>
+
     </div>
   </div>
-  <div class="footer-bar"><span>ABOUT</span><span>DOC 001 / PAGE 02</span></div>
+</section>
+
+<div class="dither" style="--from:var(--night);--to:var(--orange)" aria-hidden="true"></div>
+
+<!-- ============ INTRO STRIP ============ -->
+<section class="band band--orange strip" aria-label="Introduction">
+  <div class="wrap wrap--wide">
+    <div class="strip__in">
+
+      <div class="strip__hi">
+        <svg class="px" viewBox="0 0 16 16" aria-hidden="true">
+          <path fill="#14102E" d="M5 0h6v1H5zM3 1h2v1H3zm8 0h2v1h-2zM2 2h1v1H2zm11 0h1v1h-1zM1 3h1v2H1zm13 0h1v2h-1zM0 5h1v6H0zm15 0h1v6h-1zM1 11h1v2H1zm13 0h1v2h-1zM2 13h1v1H2zm11 0h1v1h-1zM3 14h2v1H3zm8 0h2v1h-2zM5 15h6v1H5z"/>
+          <path fill="#F2AC1D" d="M5 1h6v1H5zM3 2h10v1H3zM2 3h12v2H2zM1 5h14v6H1zM2 11h12v2H2zM3 13h10v1H3zM5 14h6v1H5z"/>
+          <path fill="#14102E" d="M4 5h2v3H4zm6 0h2v3h-2zM3 10h1v1H3zm1 1h8v1H4zm8-1h1v1h-1z"/>
+        </svg>
+        <b>Hello!</b>
+      </div>
+
+      <p class="strip__txt">
+        Third-year Mechanical Engineering co-op student at Memorial University of Newfoundland — mechanical design, fabrication, and teaching people how things work.
+      </p>
+
+      <div class="strip__caps">
+        <div class="cap">
+          <span class="cap__ico"><svg class="px" viewBox="0 0 16 16" aria-hidden="true"><use href="#i-gear"/></svg></span>
+          <b>MECHANICAL<br>DESIGN</b>
+        </div>
+        <div class="cap">
+          <span class="cap__ico"><svg class="px" viewBox="0 0 16 16" aria-hidden="true"><use href="#i-wrench"/></svg></span>
+          <b>SHOP<br>FABRICATION</b>
+        </div>
+        <div class="cap">
+          <span class="cap__ico"><svg class="px" viewBox="0 0 16 16" aria-hidden="true"><use href="#i-bolt"/></svg></span>
+          <b>SENSORS &amp;<br>CONTROL</b>
+        </div>
+        <div class="cap">
+          <span class="cap__ico"><svg class="px" viewBox="0 0 16 16" aria-hidden="true"><use href="#i-wave"/></svg></span>
+          <b>ROV &amp;<br>OUTREACH</b>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ CAPABILITIES ============ -->
+<section class="band band--cream tex-dot" aria-labelledby="cap-h">
+  <div class="wrap wrap--wide">
+    <h2 id="cap-h" class="sr">Capabilities</h2>
+    <p class="kicker rv">// 01 — CAPABILITIES</p>
+    <div class="cards" data-stagger>
+
+      <article class="win rv">
+        <div class="win__bar"><span class="win__name">design.exe</span><span class="win__btns" aria-hidden="true"><i class="sq"></i></span></div>
+        <div class="win__body">
+          <div class="card__ico"><svg class="px" viewBox="0 0 16 16" aria-hidden="true"><use href="#i-gear"/></svg></div>
+          <h3>Design</h3>
+          <p>SolidWorks modelling and full drawing sets — from a 6-sheet workspace package to linkage geometry and ROV mounts.</p>
+        </div>
+      </article>
+
+      <article class="win rv">
+        <div class="win__bar"><span class="win__name">build.exe</span><span class="win__btns" aria-hidden="true"><i class="sq"></i></span></div>
+        <div class="win__body">
+          <div class="card__ico"><svg class="px" viewBox="0 0 16 16" aria-hidden="true"><use href="#i-wrench"/></svg></div>
+          <h3>Build</h3>
+          <p>Hand tools, 3D printing, vacuum forming and shop fabrication. Grant-funded builds made to survive daily classroom use.</p>
+        </div>
+      </article>
+
+      <article class="win rv">
+        <div class="win__bar"><span class="win__name">sense.exe</span><span class="win__btns" aria-hidden="true"><i class="sq"></i></span></div>
+        <div class="win__body">
+          <div class="card__ico"><svg class="px" viewBox="0 0 16 16" aria-hidden="true"><use href="#i-bolt"/></svg></div>
+          <h3>Sense</h3>
+          <p>ESP32 and HC-SR04 sensing, Raspberry Pi data logging, micro:bit builds, and rectified alternator output.</p>
+        </div>
+      </article>
+
+      <article class="win rv">
+        <div class="win__bar"><span class="win__name">teach.exe</span><span class="win__btns" aria-hidden="true"><i class="sq"></i></span></div>
+        <div class="win__body">
+          <div class="card__ico"><svg class="px" viewBox="0 0 16 16" aria-hidden="true"><use href="#i-user"/></svg></div>
+          <h3>Teach</h3>
+          <p>Makerspace programming at St. Matthew's School and ROV simulator sessions for visiting groups at the Marine Institute.</p>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<div class="dither" style="--from:var(--paper);--to:var(--night)" aria-hidden="true"></div>
+
+<!-- ============ ABOUT ============ -->
+<section class="band band--night tex-grid" id="about">
+  <div class="wrap wrap--wide">
+    <p class="kicker rv">// 02 — ABOUT</p>
+    <div class="about__grid">
+
+      <div>
+        <h2 class="h-sect rv">
+          <span class="ln" data-t="Designer.">Designer.</span>
+          <span class="ln" data-t="Builder.">Builder.</span>
+          <span class="ln" data-t="Teacher.">Teacher.</span>
+        </h2>
+
+        <article class="win win--cream rv">
+          <div class="win__bar"><span class="win__name">about_me.txt</span><span class="win__btns" aria-hidden="true"><i></i><i class="sq"></i><i class="x"></i></span></div>
+          <div class="win__body prose">
+            <p>Third-year Mechanical Engineering co-op student at Memorial University of Newfoundland, currently an Engineering Work Term Student with the Fisheries and Marine Institute's School of Ocean Technology. My work sits at the intersection of mechanical design, fabrication, and teaching people how things work.</p>
+            <p>This portfolio spans inspection work with Bureau Veritas Group, educational programming at St. Matthew's School, and design and robotics work at the Marine Institute — plus a long list of smaller builds along the way.</p>
+          </div>
+        </article>
+
+        <div class="stats" data-stagger>
+          <div class="stat rv"><b>03</b><span>WORK<br>SETTINGS</span></div>
+          <div class="stat rv"><b>21+</b><span>BUILDS &amp;<br>PROJECTS</span></div>
+          <div class="stat rv"><b>2028</b><span>GRAD<br>YEAR</span></div>
+        </div>
+      </div>
+
+      <div class="about__side">
+        <div class="win win--cream win--teal rv">
+          <div class="win__bar"><span class="win__name">details</span><span class="win__btns" aria-hidden="true"><i class="sq"></i></span></div>
+          <div class="win__body" style="display:grid;gap:.55rem">
+            <div class="tick"><svg class="px" viewBox="0 0 16 16" aria-hidden="true"><use href="#i-check"/></svg> Mechanical Engineering (Co-op), MUN</div>
+            <div class="tick"><svg class="px" viewBox="0 0 16 16" aria-hidden="true"><use href="#i-check"/></svg> Engineering Work Term Student, Marine Institute</div>
+            <div class="tick"><svg class="px" viewBox="0 0 16 16" aria-hidden="true"><use href="#i-check"/></svg> St. John's, Newfoundland &amp; Labrador</div>
+            <div class="tick"><svg class="px" viewBox="0 0 16 16" aria-hidden="true"><use href="#i-check"/></svg> ytahmed@mun.ca</div>
+            <a class="btn btn--gold" href="mailto:ytahmed@mun.ca" style="margin-top:.5rem;justify-content:center">
+              <svg class="px" viewBox="0 0 16 16" aria-hidden="true"><use href="#i-mail"/></svg> Get in touch
+            </a>
+          </div>
+        </div>
+
+        <div class="burst-badge rv">
+          <svg class="px" viewBox="0 0 200 200" aria-hidden="true"><use href="#i-star"/></svg>
+          <span>CO-OP<br>2026</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="dither" style="--from:var(--night);--to:var(--teal)" aria-hidden="true"></div>
+
+<!-- ============ PROJECT INDEX ============ -->
+<section class="band band--teal" id="projects">
+  <div class="wrap wrap--wide">
+    <p class="kicker rv">// 03 — SELECTED WORK</p>
+    <h2 class="h-sect rv"><span class="ln" data-t="Project Index.">Project Index.</span></h2>
+
+    <div class="idx__layout">
+
+      <article class="win win--cream rv">
+        <div class="win__bar">
+          <span class="win__name">featured_projects</span>
+          <span class="win__btns" aria-hidden="true"><i></i><i class="sq"></i><i class="x"></i></span>
+        </div>
+        <div class="win__body">
+          <div class="feat" data-stagger>
+            <a class="feat__card" href="#p001">
+              <img src="img/sm/pedal_hero.jpg" width="1400" height="1400" loading="lazy" decoding="async"
+                   alt="Assembled pedal-powered alternator generator on its plywood and pallet base">
+              <span class="feat__meta"><b>Pedal Generator</b><span>Energy conversion</span></span>
+            </a>
+            <a class="feat__card" href="#p003">
+              <img src="img/sm/ws_1_iso.jpg" width="1200" height="847" loading="lazy" decoding="async"
+                   alt="Isometric SolidWorks render of the workspace design project">
+              <span class="feat__meta"><b>Workspace Design</b><span>CAD drawing set</span></span>
+            </a>
+            <a class="feat__card" href="#p005">
+              <img src="img/sm/manip_hero.jpg" width="788" height="1400" loading="lazy" decoding="async"
+                   alt="ROV with the 3D printed manipulator arm mount fitted">
+              <span class="feat__meta"><b>Manipulator Mount</b><span>ROV field fix</span></span>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <aside class="win win--cream rv">
+        <div class="win__bar"><span class="win__name">contents</span><span class="win__btns" aria-hidden="true"><i class="sq"></i></span></div>
+        <div class="win__body">
+          <ul class="idx__list">
+            <li><a href="#p001"><em>001</em> Pedal-Powered Generator <svg class="px" viewBox="0 0 16 16" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+            <li><a href="#p002"><em>002</em> Automated Door Closer <svg class="px" viewBox="0 0 16 16" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+            <li><a href="#p003"><em>003</em> Workspace Design <svg class="px" viewBox="0 0 16 16" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+            <li><a href="#p004"><em>004</em> Acoustic Tank Sensor <svg class="px" viewBox="0 0 16 16" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+            <li><a href="#p005"><em>005</em> Manipulator Arm Mount <svg class="px" viewBox="0 0 16 16" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+            <li><a href="#p006"><em>006</em> ROV Simulator Ops <svg class="px" viewBox="0 0 16 16" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+            <li><a href="#p007"><em>007</em> 4-Bar Automata <svg class="px" viewBox="0 0 16 16" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+            <li><a href="#p008"><em>008</em> Motorized Automata <svg class="px" viewBox="0 0 16 16" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+          </ul>
+          <a class="btn btn--gold" href="#makes" style="margin-top:1.1rem;width:100%;justify-content:center">
+            16 More Builds
+            <svg class="px" viewBox="0 0 16 16" aria-hidden="true"><use href="#i-arrow"/></svg>
+          </a>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+</section>
+
+<div class="dither" style="--from:var(--teal);--to:var(--paper)" aria-hidden="true"></div>
+
+<!-- ============ PROJECT 001 ============ -->
+<section class="band band--cream tex-dot">
+  <div class="wrap wrap--wide">
+    <article class="win doc rv" id="p001">
+      <div class="win__bar">
+        <span class="win__name">001_pedal_generator.doc</span>
+        <span class="win__btns" aria-hidden="true"><i></i><i class="sq"></i><i class="x"></i></span>
+      </div>
+      <div class="win__body">
+        <header class="doc__head">
+          <p class="doc__num">PROJECT 001</p>
+          <h2 class="doc__title">Pedal-Powered Alternator Generator</h2>
+          <p class="doc__sub">Energy conversion &amp; mechanical prototyping</p>
+        </header>
+
+        <dl class="spec">
+          <div><dt>Status</dt><dd>Complete</dd></div>
+          <div><dt>Year</dt><dd>2025</dd></div>
+          <div><dt>Tools</dt><dd>Hand tools / Electrical / Multimeter</dd></div>
+          <div><dt>Site</dt><dd>St. Matthew's School</dd></div>
+        </dl>
+
+        <div class="doc__cols">
+          <p>Funded, designed, and built a pedal-powered generator for classroom demonstrations — secured two grants totalling over $2,000 (CCNL's Youth Engagement Funding Initiative and the Wellness Coalition Avalon East) before touching any hardware.</p>
+          <p>Built around a genuine 12V/105A automotive alternator rather than a toy DC motor, belt-driven from a spin bike and mounted on a custom plywood-and-pallet base. Since the alternator outputs three-phase AC, a six-diode bridge rectifier converts it to usable DC, targeting ~1,500 RPM at the pedals.</p>
+          <p>Guarded moving parts, secure mounting, and insulated wiring throughout — built for regular use by children in a classroom.</p>
+        </div>
+
+        <div class="ticks-row">
+          <div class="tick"><svg class="px" viewBox="0 0 16 16" aria-hidden="true"><use href="#i-check"/></svg> Funding: $2,000+ across 2 grants</div>
+          <div class="tick"><svg class="px" viewBox="0 0 16 16" aria-hidden="true"><use href="#i-check"/></svg> Drive: belt, spin bike to alternator</div>
+          <div class="tick"><svg class="px" viewBox="0 0 16 16" aria-hidden="true"><use href="#i-check"/></svg> Output: rectified DC, ~1,500 RPM target</div>
+        </div>
+
+        <div class="figs-2">
+          <figure class="shot ar-43">
+            <img src="img/sm/pedal_hero.jpg" width="1400" height="1400" loading="lazy" decoding="async"
+                 alt="The completed pedal generator: spin bike belt-driving an automotive alternator on a pallet base">
+            <figcaption>Fig. 001A — assembled generator, pallet base</figcaption>
+          </figure>
+          <figure class="shot ar-43">
+            <img src="img/sm/pedal_detail.jpg" width="1400" height="1400" loading="lazy" decoding="async"
+                 alt="Close-up of the alternator mounting bracket and wiring">
+            <figcaption>Fig. 001B — alternator mount &amp; wiring detail</figcaption>
+          </figure>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<div class="dither" style="--from:var(--paper);--to:var(--night)" aria-hidden="true"></div>
+
+<!-- ============ PROJECTS 002 + 004 ============ -->
+<section class="band band--night tex-grid">
+  <div class="wrap wrap--wide">
+    <p class="kicker rv">// PROJECTS 004 &amp; 002</p>
+    <h2 class="h-sect rv">
+      <span class="ln" data-t="Sensing &amp;">Sensing &amp;</span>
+      <span class="ln" data-t="Design.">Design.</span>
+    </h2>
+
+    <article class="win doc rv" id="p004">
+      <div class="win__bar">
+        <span class="win__name">004_tank_level_sensor.doc</span>
+        <span class="win__btns" aria-hidden="true"><i></i><i class="sq"></i><i class="x"></i></span>
+      </div>
+      <div class="win__body">
+        <header class="doc__head">
+          <p class="doc__num">PROJECT 004</p>
+          <h3 class="doc__title">Acoustic Tank Water Level Sensor</h3>
+          <p class="doc__sub">Sensing &amp; alerting &mdash; School of Ocean Technology</p>
+        </header>
+        <div class="doc__split">
+          <div class="prose">
+            <p>Built on direct supervisor request for the School of Ocean Technology's acoustic tank: detect a water-level drop and alert staff automatically. An HC-SR04 ultrasonic sensor, isolated inside a length of pipe, pairs with an ESP32 that emails an alert over Wi-Fi. Working prototype — calibration is next before permanent install.</p>
+            <div class="chips" style="margin-top:1rem">
+              <span class="chip chip--teal">HC-SR04</span>
+              <span class="chip chip--teal">ESP32</span>
+              <span class="chip chip--teal">Wi-Fi alerting</span>
+            </div>
+            <div class="tick" style="margin-top:1rem"><svg class="px" viewBox="0 0 16 16" aria-hidden="true"><use href="#i-check"/></svg> Prototype sensing + Wi-Fi alert pipeline working</div>
+          </div>
+          <div class="flow">
+            <b>SIGNAL PATH</b>
+            <span>Water level drops</span><i>&darr;</i>
+            <span>HC-SR04, isolated in pipe</span><i>&darr;</i>
+            <span>ESP32 over Wi-Fi</span><i>&darr;</i>
+            <span>Alert email &rarr; supervisor</span>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="win doc rv" id="p002">
+      <div class="win__bar">
+        <span class="win__name">002_door_mechanism.doc</span>
+        <span class="win__btns" aria-hidden="true"><i></i><i class="sq"></i><i class="x"></i></span>
+      </div>
+      <div class="win__body">
+        <header class="doc__head">
+          <p class="doc__num">PROJECT 002</p>
+          <h3 class="doc__title">Automated Door Closing Mechanism</h3>
+          <p class="doc__sub">Four-bar linkage analysis &mdash; MUN coursework</p>
+        </header>
+        <div class="doc__split">
+          <div class="prose">
+            <p>Four-person team analyzing a four-bar linkage for automatic door closing. My role: concept design, dimensioning the linkage geometry (195 / 225 / 325 / 390 mm), and writing the results and conclusion. Kinematic analysis, Python script, and CAD model were teammates' work.</p>
+            <div class="chips" style="margin-top:1rem">
+              <span class="chip chip--orange">Concept design</span>
+              <span class="chip chip--orange">Linkage geometry</span>
+              <span class="chip chip--orange">Results &amp; conclusion</span>
+            </div>
+            <div class="tick" style="margin-top:1rem"><svg class="px" viewBox="0 0 16 16" aria-hidden="true"><use href="#i-check"/></svg> My role: geometry + results analysis</div>
+          </div>
+          <figure class="shot shot--fit ar-169">
+            <img src="img/sm/door_plot.jpg" width="760" height="430" loading="lazy" decoding="async"
+                 alt="Plot of angular velocity for the door and connector links across the closing cycle">
+            <figcaption>Fig. 002A — angular velocity, door &amp; connector</figcaption>
+          </figure>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<div class="dither" style="--from:var(--night);--to:var(--paper)" aria-hidden="true"></div>
+
+<!-- ============ PROJECT 003 ============ -->
+<section class="band band--cream tex-dot">
+  <div class="wrap wrap--wide">
+    <article class="win doc rv" id="p003">
+      <div class="win__bar">
+        <span class="win__name">003_workspace_design.doc</span>
+        <span class="win__btns" aria-hidden="true"><i></i><i class="sq"></i><i class="x"></i></span>
+      </div>
+      <div class="win__body">
+        <header class="doc__head">
+          <p class="doc__num">PROJECT 003</p>
+          <h3 class="doc__title">Workspace Design Project</h3>
+          <p class="doc__sub">Solo SolidWorks package &mdash; 6-sheet drawing set</p>
+        </header>
+
+        <dl class="spec">
+          <div><dt>Scope</dt><dd>Solo CAD project</dd></div>
+          <div><dt>Package</dt><dd>6 drawing sheets</dd></div>
+          <div><dt>Model</dt><dd>7+ components, 4 revisions</dd></div>
+          <div><dt>Room</dt><dd>12'-0" &times; 9'-2"</dd></div>
+        </dl>
+
+        <p class="lede" style="margin-bottom:1.4rem">A complete workspace designed in SolidWorks and delivered as a six-sheet drawing set — 7+ components modelled and assembled across four revisions, with an emphasis on ergonomics and safety. Drawing-set work only; no physical build.</p>
+
+        <div class="sheets" data-stagger>
+          <figure class="shot shot--fit ar-32 rv">
+            <img src="img/sm/ws_1_iso.jpg" width="1200" height="847" loading="lazy" decoding="async" alt="Sheet 1: isometric render of the workspace assembly">
+            <figcaption>Sheet 1 — isometric render</figcaption>
+          </figure>
+          <figure class="shot shot--fit ar-32 rv">
+            <img src="img/sm/ws_2_cutaway.jpg" width="1200" height="847" loading="lazy" decoding="async" alt="Sheet 2: cut-away perspective view of the workspace">
+            <figcaption>Sheet 2 — cut-away perspective</figcaption>
+          </figure>
+          <figure class="shot shot--fit ar-32 rv">
+            <img src="img/sm/ws_3_elev_render.jpg" width="1200" height="847" loading="lazy" decoding="async" alt="Sheet 3: rendered elevation views">
+            <figcaption>Sheet 3 — rendered elevations</figcaption>
+          </figure>
+          <figure class="shot shot--fit ar-32 rv">
+            <img src="img/sm/ws_4_elev_line.jpg" width="1200" height="847" loading="lazy" decoding="async" alt="Sheet 4: line-drawing elevations and sections">
+            <figcaption>Sheet 4 — elevations &amp; sections</figcaption>
+          </figure>
+          <figure class="shot shot--fit ar-32 rv">
+            <img src="img/sm/ws_5_floorplan.jpg" width="1200" height="847" loading="lazy" decoding="async" alt="Sheet 5: dimensioned floor plan">
+            <figcaption>Sheet 5 — floor plan, dimensioned</figcaption>
+          </figure>
+          <figure class="shot shot--fit ar-32 rv">
+            <img src="img/sm/ws_6_outfit.jpg" width="1200" height="847" loading="lazy" decoding="async" alt="Sheet 6: dimensioned outfit plan">
+            <figcaption>Sheet 6 — outfit plan, dimensioned</figcaption>
+          </figure>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<div class="dither" style="--from:var(--paper);--to:var(--teal)" aria-hidden="true"></div>
+
+<!-- ============ PROJECTS 005 + 006 ============ -->
+<section class="band band--teal">
+  <div class="wrap wrap--wide">
+    <p class="kicker rv">// PROJECTS 005 &amp; 006</p>
+    <h2 class="h-sect rv"><span class="ln" data-t="ROV Work.">ROV Work.</span></h2>
+
+    <article class="win win--cream doc rv" id="p005">
+      <div class="win__bar">
+        <span class="win__name">005_manipulator_mount.doc</span>
+        <span class="win__btns" aria-hidden="true"><i></i><i class="sq"></i><i class="x"></i></span>
+      </div>
+      <div class="win__body">
+        <header class="doc__head">
+          <p class="doc__num">PROJECT 005</p>
+          <h3 class="doc__title">Manipulator Arm Mount, ROV</h3>
+          <p class="doc__sub">3D printed field fix &mdash; Marine Institute</p>
+        </header>
+        <div class="doc__split">
+          <div class="prose">
+            <p>The manipulator arm on one of the Marine Institute's ROVs sat outside the operator's camera view. My supervisor and I 3D printed a custom mount to reposition it — then a printed extension when the first attempt fell short. A fast field fix, typical of ROV operations work.</p>
+            <div class="chips" style="margin-top:1rem">
+              <span class="chip">3D printing</span>
+              <span class="chip">Iteration</span>
+              <span class="chip">ROV ops</span>
+            </div>
+            <div class="tick" style="margin-top:1rem"><svg class="px" viewBox="0 0 16 16" aria-hidden="true"><use href="#i-check"/></svg> Manipulator now fully in camera frame</div>
+          </div>
+          <div class="doc__media doc__media--2">
+            <figure class="shot ar-34">
+              <img src="img/sm/manip_hero.jpg" width="788" height="1400" loading="lazy" decoding="async" alt="ROV with the manipulator arm mounted in its new position">
+              <figcaption>Fig. 005A — ROV, mounted arm</figcaption>
+            </figure>
+            <figure class="shot ar-34">
+              <img src="img/sm/manip_detail.jpg" width="788" height="1400" loading="lazy" decoding="async" alt="Detail of the 3D printed mount and extension on the ROV frame">
+              <figcaption>Fig. 005B — mount detail</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="win win--cream doc rv" id="p006">
+      <div class="win__bar">
+        <span class="win__name">006_simulator_ops.doc</span>
+        <span class="win__btns" aria-hidden="true"><i></i><i class="sq"></i><i class="x"></i></span>
+      </div>
+      <div class="win__body">
+        <header class="doc__head">
+          <p class="doc__num">PROJECT 006 — OPERATIONS</p>
+          <h3 class="doc__title">ROV Simulator Operations</h3>
+          <p class="doc__sub">Underwater exploration lab &mdash; Marine Institute</p>
+        </header>
+        <div class="doc__split">
+          <div class="prose">
+            <p>A recurring part of my role: operating the Marine Institute's high-fidelity ROV simulators for visiting groups in the underwater exploration lab. The largest was the Global MATE ROV competition, hosting government and international guests; I also helped organize the four-day SHAD MicroMate program.</p>
+            <div class="tick" style="margin-top:1rem"><svg class="px" viewBox="0 0 16 16" aria-hidden="true"><use href="#i-check"/></svg> Guided sessions, Global MATE ROV competition</div>
+          </div>
+          <div class="callout">
+            <b>~2,000</b>
+            <span>VISITORS GUIDED<br>GLOBAL MATE ROV</span>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<div class="dither" style="--from:var(--teal);--to:var(--paper)" aria-hidden="true"></div>
+
+<!-- ============ PROJECTS 007 + 008 ============ -->
+<section class="band band--cream tex-dot">
+  <div class="wrap wrap--wide">
+    <p class="kicker rv">// PROJECTS 007 &amp; 008</p>
+    <h2 class="h-sect rv"><span class="ln" data-t="Automata.">Automata.</span></h2>
+
+    <article class="win rv">
+      <div class="win__bar">
+        <span class="win__name">automata/</span>
+        <span class="win__btns" aria-hidden="true"><i></i><i class="sq"></i><i class="x"></i></span>
+      </div>
+      <div class="win__body">
+
+        <div class="sheets sheets--4" data-stagger style="margin-bottom:1.6rem">
+          <figure class="shot ar-1 rv">
+            <img src="img/sm/auto_4bar.jpg" width="1400" height="1400" loading="lazy" decoding="async" alt="Hand-cranked four-bar automaton built from cardboard, dowels and wire">
+            <figcaption>Fig. 007A — 4-bar automata mechanism</figcaption>
+          </figure>
+          <figure class="shot ar-1 rv">
+            <img src="img/sm/workshop_wide.jpg" width="1179" height="984" loading="lazy" decoding="async" alt="Motorized automaton with its eye mechanism on the workshop bench">
+            <figcaption>Fig. 008A — motorized automata, eye mechanism</figcaption>
+          </figure>
+          <figure class="shot ar-1 rv">
+            <img src="img/sm/auto_2axis.jpg" width="1050" height="1400" loading="lazy" decoding="async" alt="Finished automata on display in the St. Matthew's makerspace">
+            <figcaption>Fig. 008B — on display, St. Matthew's makerspace</figcaption>
+          </figure>
+          <figure class="shot ar-1 rv">
+            <div class="vid">
+              <video id="automata-clip" muted loop playsinline preload="none"
+                     width="540" height="960" poster="img/sm/automata_008_poster.jpg"></video>
+              <button class="vid__btn" type="button" data-vid-toggle aria-label="Play automata clip">
+                <svg class="px" viewBox="0 0 16 16" aria-hidden="true"><use href="#i-play"/></svg>
+              </button>
+              <span class="vid__tag" aria-hidden="true">MOTION</span>
+            </div>
+            <figcaption>Fig. 008C — cam stack driving the eye, running</figcaption>
+          </figure>
+        </div>
+
+        <div class="doc__split" style="align-items:stretch">
+          <div id="p007">
+            <header class="doc__head">
+              <p class="doc__num">PROJECT 007</p>
+              <h3 class="doc__title" style="font-size:clamp(.95rem,.8rem + .8vw,1.25rem)">4-Bar Mechanism&ndash;Inspired Automata</h3>
+              <p class="doc__sub">Planar linkage kinematics, by hand</p>
+            </header>
+            <p>Hand-cranked automaton exploring the same planar-linkage kinematics as Project 002, built from cardboard, dowels, and wire — link lengths and pivot placement set the output motion by hand.</p>
+          </div>
+          <div id="p008">
+            <header class="doc__head">
+              <p class="doc__num">PROJECT 008</p>
+              <h3 class="doc__title" style="font-size:clamp(.95rem,.8rem + .8vw,1.25rem)">Motorized 2-Axis Movement Automata</h3>
+              <p class="doc__sub">Mechanical linkages meet control</p>
+            </header>
+            <p>A small electric motor drives mechanical linkages for coordinated 2-axis motion — the first real bridge between mechanical design and electrical/control concepts, and a direct precursor to the Project 004 sensor work.</p>
+          </div>
+        </div>
+
+
+      </div>
+    </article>
+  </div>
+</section>
+
+<div class="dither" style="--from:var(--paper);--to:var(--night)" aria-hidden="true"></div>
+
+<!-- ============ MAKE-AND-TAKE ============ -->
+<section class="band band--night tex-grid" id="makes">
+  <div class="wrap wrap--wide">
+    <p class="kicker rv">// 04 — WORKSHOP</p>
+    <h2 class="h-sect rv"><span class="ln" data-t="Make-and-Takes.">Make-and-Takes.</span></h2>
+    <p class="lede rv" style="margin-bottom:2rem;color:var(--paper)">
+      A collection of rapid prototypes, hobby builds, and hands-on experiments from the workshop.
+    </p>
+
+    <div class="makes" data-stagger>
+      <figure class="make rv"><img src="img/sm/crossbow.jpg" width="1400" height="1400" loading="lazy" decoding="async" alt="Educational model crossbow build"><b>Crossbow (Ed. Model)</b></figure>
+      <figure class="make rv"><img src="img/sm/snowball.jpg" width="1400" height="1400" loading="lazy" decoding="async" alt="Snowball launcher build"><b>Snowball Launcher</b></figure>
+      <figure class="make rv"><img src="img/sm/fan1.jpg" width="1400" height="1400" loading="lazy" decoding="async" alt="Elastic-powered fan, first version"><b>Elastic-Powered Fan</b></figure>
+      <figure class="make rv"><img src="img/sm/fan2.jpg" width="1400" height="1400" loading="lazy" decoding="async" alt="Elastic-powered fan, second version"><b>Elastic Fan — V2</b></figure>
+      <figure class="make rv"><img src="img/sm/launcher.jpg" width="1400" height="1400" loading="lazy" decoding="async" alt="Bottle-cap launcher build"><b>Launcher (Bottle Cap)</b></figure>
+      <figure class="make rv"><img src="img/sm/runningman.jpg" width="1400" height="1400" loading="lazy" decoding="async" alt="Running man spinner build"><b>Running Man Spinner</b></figure>
+      <figure class="make rv"><img src="img/sm/turmeric.jpg" width="900" height="1200" loading="lazy" decoding="async" alt="Turmeric anthotype prints"><b>Turmeric Anthotypes</b></figure>
+      <figure class="make rv"><img src="img/sm/remembrance.jpg" width="1400" height="1400" loading="lazy" decoding="async" alt="Remembrance Day talking stick build"><b>Remembrance Day Stick</b></figure>
+    </div>
+
+    <div class="marq rv" aria-label="Other builds in the shop">
+      <div class="marq__track">
+        <span>ALSO IN THE SHOP &nbsp;&bull;&nbsp; BALLOON-POWERED CAR &nbsp;&bull;&nbsp; TALKING STICK &nbsp;&bull;&nbsp; MICRO:BIT REACTION GAME &nbsp;&bull;&nbsp; MICRO:BIT DIGITAL DICE &nbsp;&bull;&nbsp; PRINTMAKING (4 TECHNIQUES) &nbsp;&bull;&nbsp; GARDEN BINS &amp; TRELLIS &nbsp;&bull;&nbsp; 3D PRINTING &amp; ALIGNMENT &nbsp;&bull;&nbsp; VACUUM FORMING &nbsp;&bull;&nbsp; CRICUT COASTERS &nbsp;&bull;&nbsp;</span>
+        <span aria-hidden="true">ALSO IN THE SHOP &nbsp;&bull;&nbsp; BALLOON-POWERED CAR &nbsp;&bull;&nbsp; TALKING STICK &nbsp;&bull;&nbsp; MICRO:BIT REACTION GAME &nbsp;&bull;&nbsp; MICRO:BIT DIGITAL DICE &nbsp;&bull;&nbsp; PRINTMAKING (4 TECHNIQUES) &nbsp;&bull;&nbsp; GARDEN BINS &amp; TRELLIS &nbsp;&bull;&nbsp; 3D PRINTING &amp; ALIGNMENT &nbsp;&bull;&nbsp; VACUUM FORMING &nbsp;&bull;&nbsp; CRICUT COASTERS &nbsp;&bull;&nbsp;</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER / CONTACT ============ -->
+<footer class="band band--purple foot" id="contact">
+  <div class="wrap wrap--wide">
+    <div class="foot__grid">
+
+      <div class="foot__lead">
+        <h2>Let's build <br>something.</h2>
+        <p>This portfolio is a cross-section of my mechanical design, fabrication, and technical communication work — from funded engineering builds and Marine Institute ROV operations to classroom teaching projects. I'm happy to walk through any of these in more detail.</p>
+        <a class="btn btn--gold" href="mailto:ytahmed@mun.ca">
+          <svg class="px" viewBox="0 0 16 16" aria-hidden="true"><use href="#i-mail"/></svg>
+          ytahmed@mun.ca
+        </a>
+        <div class="foot__mascot">
+          <svg class="px" viewBox="0 0 16 16" style="color:var(--gold)" aria-hidden="true"><use href="#i-monitor"/></svg>
+          <span>THANKS FOR<br>VISITING!</span>
+        </div>
+      </div>
+
+      <nav aria-label="Footer">
+        <h3>PORTFOLIO</h3>
+        <ul class="foot__list">
+          <li><a href="#top">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#makes">Make-and-Takes</a></li>
+        </ul>
+      </nav>
+
+      <div>
+        <h3>DETAILS</h3>
+        <p class="foot__facts">
+          <b>Program</b><br>B.Eng (Co-op), Mechanical — MUN<br><br>
+          <b>Current role</b><br>Engineering Work Term Student,<br>Fisheries &amp; Marine Institute<br><br>
+          <b>Base</b><br>St. John's, NL<br><br>
+          <b>Focus</b><br>Design &middot; Prototyping &middot; Fabrication &middot; Technical communication
+        </p>
+      </div>
+
+    </div>
+  </div>
+</footer>
+
+<div class="copybar">
+  <p>&copy; 2026 YEAAL TAKIAN AHMED &nbsp;&bull;&nbsp; ENGINEERING PORTFOLIO, VOL. 01, REV. B &nbsp;&bull;&nbsp; MADE WITH <b>&hearts;</b> AND PIXELS</p>
 </div>
 
-<!-- ================= PAGE 3: INDEX ================= -->
-<div class="page">
-  <div class="corner-tick tick-tl"></div><div class="corner-tick tick-tr"></div>
-  <div class="doc-topbar">// 00 — CONTENTS</div>
-  <div class="doc-rule"></div>
-  <h1 class="doc-h1">PROJECT <span>INDEX</span></h1>
+<script>
+(function(){
+  "use strict";
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  <div class="doc-cat" style="margin-top:0;">Flagship — Detailed</div>
-  <div class="doc-row"><div class="dnum">001</div><div class="dtitle">Pedal-Powered Alternator Generator</div><div class="dtag">St. Matthew's</div></div>
-  <div class="doc-row"><div class="dnum">002</div><div class="dtitle">Automated Door Closing Mechanism</div><div class="dtag">MUN Coursework</div></div>
-  <div class="doc-row"><div class="dnum">003</div><div class="dtitle">Workspace Design Project</div><div class="dtag">MUN Coursework</div></div>
-  <div class="doc-row"><div class="dnum">004</div><div class="dtitle">Acoustic Tank Water Level Sensor</div><div class="dtag">Marine Institute</div></div>
-  <div class="doc-row"><div class="dnum">005</div><div class="dtitle">Manipulator Arm Mount, ROV</div><div class="dtag">Marine Institute</div></div>
+  /* ---- 1. stagger delays inside grouped grids ---- */
+  document.querySelectorAll('[data-stagger]').forEach(function(group){
+    Array.prototype.forEach.call(group.children, function(child, i){
+      child.style.setProperty('--d', Math.min(i, 8) * 70 + 'ms');
+    });
+  });
 
-  <div class="doc-cat">Marine Institute — Operations</div>
-  <div class="doc-row"><div class="dnum">006</div><div class="dtitle">ROV Simulator Operations</div><div class="dtag">Marine Institute</div></div>
+  /* ---- 2. scroll reveal ---- */
+  var revealables = document.querySelectorAll('.rv');
+  if (!reduce && 'IntersectionObserver' in window) {
+    document.documentElement.classList.add('js-reveal');
+    var reveal = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting) { e.target.classList.add('in'); reveal.unobserve(e.target); }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+    revealables.forEach(function(el){ reveal.observe(el); });
+  }
 
-  <div class="doc-cat">Fairly Detailed — Automata</div>
-  <div class="doc-row"><div class="dnum">007</div><div class="dtitle">4-Bar Mechanism–Inspired Automata</div><div class="dtag">St. Matthew's</div></div>
-  <div class="doc-row"><div class="dnum">008</div><div class="dtitle">Motorized 2-Axis Movement Automata</div><div class="dtag">St. Matthew's</div></div>
+  /* ---- 3. automata clip: lazy source + motion-aware autoplay ---- */
+  var clip = document.getElementById('automata-clip');
+  if (clip) {
+    var toggle = document.querySelector('[data-vid-toggle]');
+    var icon = toggle.querySelector('use');
+    var setIcon = function(playing){
+      icon.setAttribute('href', playing ? '#i-pause' : '#i-play');
+      toggle.setAttribute('aria-label', playing ? 'Pause automata clip' : 'Play automata clip');
+    };
+    var loaded = false;
+    var load = function(){
+      if (loaded) return;
+      loaded = true;
+      clip.src = 'media/automata_008.mp4';
+      clip.load();
+    };
+    // the clip is ~4 MB, so it is only fetched once the reader nears it
+    if ('IntersectionObserver' in window) {
+      var vio = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          if (!e.isIntersecting) return;
+          load();
+          if (!reduce) { var pr = clip.play(); if (pr) pr.catch(function(){}); }
+          vio.unobserve(e.target);
+        });
+      }, { rootMargin: '250px 0px' });
+      vio.observe(clip);
+    } else { load(); }
 
-  <div class="doc-cat">Brief — Make, Electrical &amp; Fabrication (16 builds)</div>
-  <div class="doc-brieftext">
-    BALLOON-POWERED CAR · SNOWBALL LAUNCHER · TALKING STICK · ELASTIC-POWERED FAN · CROSSBOW · RUNNING MAN SPINNER · LAUNCHER · TURMERIC ANTHOTYPES · REMEMBRANCE DAY TALKING STICK · MICRO:BIT REACTION GAME · MICRO:BIT DIGITAL DICE · PRINTMAKING (4 TECHNIQUES) · GARDEN BINS &amp; TRELLIS · 3D PRINTING &amp; ALIGNMENT · VACUUM FORMING · CRICUT COASTERS
-  </div>
+    toggle.addEventListener('click', function(){
+      load();
+      if (clip.paused) { var pr = clip.play(); if (pr) pr.catch(function(){}); }
+      else { clip.pause(); }
+    });
+    clip.addEventListener('play',  function(){ setIcon(true); });
+    clip.addEventListener('pause', function(){ setIcon(false); });
+  }
 
-  <div class="footer-bar"><span>CONTENTS</span><span>DOC 001 / PAGE 03</span></div>
-</div>
+  /* ---- 3. mobile menu ---- */
+  var nav = document.getElementById('nav');
+  var burger = document.getElementById('burger');
+  if (burger) {
+    // single place that owns menu state, so aria-expanded and aria-label can never drift
+    var setMenu = function(open){
+      nav.classList.toggle('open', open);
+      burger.setAttribute('aria-expanded', String(open));
+      burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    };
+    burger.addEventListener('click', function(){
+      setMenu(!nav.classList.contains('open'));
+    });
+    nav.querySelectorAll('.nav__links a').forEach(function(a){
+      a.addEventListener('click', function(){ setMenu(false); });
+    });
+    document.addEventListener('keydown', function(e){
+      if (e.key === 'Escape' && nav.classList.contains('open')) {
+        setMenu(false);
+        burger.focus();
+      }
+    });
+  }
 
-<!-- ================= PROJECT 001 — PEDAL GENERATOR ================= -->
-<div class="page">
-  <div class="corner-tick tick-tl"></div><div class="corner-tick tick-tr"></div>
+  /* ---- 4. scrollspy for nav + rail ---- */
+  var targets = ['top','about','projects','makes','contact']
+    .map(function(id){ return document.getElementById(id); })
+    .filter(Boolean);
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll('[data-nav]'));
 
-  <div class="doc-projhead">
-    <div>
-      <div class="doc-projnum">PROJECT 001</div>
-      <h1 class="doc-projtitle">Pedal-Powered<br>Alternator Generator</h1>
-      <div class="doc-projsub">Energy Conversion &amp; Mechanical Prototyping</div>
-    </div>
-    <div class="doc-metablock">
-      <div><b>STATUS:</b> COMPLETE</div>
-      <div><b>YEAR:</b> 2025</div>
-      <div><b>TOOLS:</b> HAND TOOLS / ELECTRICAL / MULTIMETER</div>
-      <div><b>SITE:</b> ST. MATTHEW'S SCHOOL</div>
-    </div>
-  </div>
+  function markActive(id){
+    navLinks.forEach(function(a){
+      var match = a.getAttribute('href') === '#' + id;
+      if (match) { a.setAttribute('aria-current','true'); }
+      else { a.removeAttribute('aria-current'); }
+    });
+  }
 
-  <div style="display:flex;gap:0.32in;">
-    <div style="flex:1.15;" class="doc-body">
-      <p>Funded, designed, and built a pedal-powered generator for classroom demonstrations — secured two grants totaling over $2,000 (CCNL's Youth Engagement Funding Initiative and the Wellness Coalition Avalon East) before touching any hardware.</p>
-      <p>Built around a genuine 12V/105A automotive alternator rather than a toy DC motor, belt-driven from a spin bike and mounted on a custom plywood-and-pallet base. Since the alternator outputs three-phase AC, a six-diode bridge rectifier converts it to usable DC, targeting ~1,500 RPM at the pedals.</p>
-      <p style="margin-bottom:0;">A Raspberry Pi logs voltage, RPM, and power output during testing. Guarded moving parts, secure mounting, and insulated wiring throughout — built for regular use by children in a classroom.</p>
-      <div class="doc-spec">
-        <div><b>FUNDING:</b> $2,000+ ACROSS 2 GRANTS</div>
-        <div><b>DRIVE:</b> BELT, SPIN BIKE TO ALTERNATOR</div>
-        <div><b>OUTPUT:</b> RECTIFIED DC, ~1,500 RPM TARGET</div>
-      </div>
-    </div>
-    <div style="flex:1;">
-      <div class="doc-photo">
-        <img src="img/sm/pedal_hero.jpg" style="height:2.9in;">
-      </div>
-      <div class="doc-photo-cap">FIG. 001A — ASSEMBLED GENERATOR, PALLET BASE</div>
-      <div class="doc-photo" style="margin-top:0.2in;">
-        <img src="img/sm/pedal_detail.jpg" style="height:2in;">
-      </div>
-      <div class="doc-photo-cap">FIG. 001B — ALTERNATOR MOUNT &amp; WIRING DETAIL</div>
-    </div>
-  </div>
-  <div class="footer-bar"><span>PROJECT 001 — PEDAL-POWERED GENERATOR</span><span>DOC 001 / PAGE 04</span></div>
-</div>
-
-<!-- ================= COMBINED: PROJECT 002 + 004 ================= -->
-<div class="page bold-bg bg-avocado">
-  <div class="about-grid"></div>
-  <div class="about-header">
-    <div class="about-logo">YT.</div>
-    <div class="about-navpill">DOC 001</div>
-  </div>
-  <div class="about-wave"></div>
-  <div style="position:relative;z-index:2;padding:0 0.32in;">
-    <div class="about-kicker">// Project 002 &amp; 004</div>
-    <div class="about-headline sm">
-      <div class="hl-row"><div class="shadow-line">Design &amp;</div><div class="fill-line">Design &amp;</div></div>
-      <div class="hl-row"><div class="shadow-line">Sensing.</div><div class="fill-line">Sensing.</div></div>
-    </div>
-  </div>
-
-  <div style="display:flex;gap:0.32in;margin-bottom:0.36in;padding:0 0.32in;position:relative;z-index:2;">
-    <div style="flex:1.1;">
-      <div class="badge">Project 002</div>
-      <h2 class="proj-title-pop">Automated Door Closing Mechanism</h2>
-      <div class="card tight">
-        <p class="body-text" style="font-size:10pt;">Four-person team analyzing a four-bar linkage for automatic door closing. My role: concept design, dimensioning the linkage geometry (195 / 225 / 325 / 390 mm), and writing the results and conclusion. Kinematic analysis, Python script, and CAD model were teammates' work.</p>
-        <div class="outcome" style="margin-top:8px;margin-bottom:0;"><span class="chk">✓</span> My role: geometry + results analysis</div>
-      </div>
-    </div>
-    <div style="flex:1;display:flex;align-items:center;justify-content:center;">
-      <div class="polaroid rot-3" style="width:100%;">
-        <div class="tape"></div>
-        <img src="img/sm/door_plot.jpg" style="width:100%;height:2.85in;">
-        <div class="cap">ANGULAR VELOCITY PLOT, DOOR &amp; CONNECTOR</div>
-      </div>
-    </div>
-  </div>
-
-  <div style="display:flex;gap:0.32in;padding:0 0.32in;position:relative;z-index:2;">
-    <div style="flex:1.1;">
-      <div class="badge">Project 004</div>
-      <h2 class="proj-title-pop">Acoustic Tank Water Level Sensor</h2>
-      <div class="card tight">
-        <p class="body-text" style="font-size:10pt;">Built on direct supervisor request for the School of Ocean Technology's acoustic tank: detect a water-level drop and alert staff automatically. An HC-SR04 ultrasonic sensor, isolated inside a length of pipe, pairs with an ESP32 that emails an alert over Wi-Fi. Working prototype — calibration is next before permanent install.</p>
-        <div class="outcome" style="margin-top:8px;margin-bottom:0;"><span class="chk">✓</span> Prototype sensing + Wi-Fi alert pipeline working</div>
-      </div>
-    </div>
-    <div style="flex:1;display:flex;align-items:center;justify-content:center;">
-      <div class="card" style="text-align:center;width:100%;">
-        <div class="mono" style="font-size:9.5pt;color:var(--orange);font-weight:700;margin-bottom:10px;letter-spacing:0.08em;">SIGNAL PATH</div>
-        <div class="mono" style="font-size:10pt;line-height:2.5;">WATER LEVEL ↓<br>HC-SR04 (IN PIPE) ↓<br>ESP32 — WI-FI ↓<br>ALERT EMAIL → SUPERVISOR</div>
-      </div>
-    </div>
-  </div>
-  <div class="footer-bar"><span>PROJECT 002 &amp; 004</span><span>DOC 001 / PAGE 05</span></div>
-</div>
-
-<!-- ================= PROJECT 003 — WORKSPACE DESIGN ================= -->
-<div class="page bold-bg bg-mustard">
-  <div class="about-grid"></div>
-  <div class="about-header">
-    <div class="about-logo">YT.</div>
-    <div class="about-navpill">DOC 001</div>
-  </div>
-  <div class="about-wave"></div>
-  <div style="position:relative;z-index:2;padding:0 0.32in;">
-    <div class="about-kicker">// Project 003</div>
-    <div class="about-headline sm">
-      <div class="hl-row"><div class="shadow-line">Workspace</div><div class="fill-line">Workspace</div></div>
-      <div class="hl-row"><div class="shadow-line">Design.</div><div class="fill-line">Design.</div></div>
-    </div>
-    <div class="card tight" style="margin-bottom:0.1in;">
-      <p class="body-text" style="margin-bottom:0;font-size:9.3pt;">Solo CAD project: a complete workspace designed in SolidWorks, delivered as a 6-sheet drawing set — 7+ components modelled and assembled across 4 revisions, with an emphasis on ergonomics and safety in a 12'-0" × 9'-2" room. Drawing-set work only; no physical build.</p>
-    </div>
-  </div>
-  <div class="ws-grid" style="position:relative;z-index:2;">
-    <div class="ws-card"><img src="img/sm/ws_1_iso.jpg"><div class="ws-card-cap">SHEET 1 — ISOMETRIC RENDER</div></div>
-    <div class="ws-card"><img src="img/sm/ws_2_cutaway.jpg"><div class="ws-card-cap">SHEET 2 — CUT-AWAY PERSPECTIVE</div></div>
-    <div class="ws-card"><img src="img/sm/ws_3_elev_render.jpg"><div class="ws-card-cap">SHEET 3 — RENDERED ELEVATIONS</div></div>
-    <div class="ws-card"><img src="img/sm/ws_5_floorplan.jpg"><div class="ws-card-cap">SHEET 5 — FLOOR PLAN, DIMENSIONED</div></div>
-    <div class="ws-card"><img src="img/sm/ws_6_outfit.jpg"><div class="ws-card-cap">SHEET 6 — OUTFIT PLAN, DIMENSIONED</div></div>
-    <div class="ws-card"><img src="img/sm/ws_4_elev_line.jpg"><div class="ws-card-cap">SHEET 4 — ELEVATIONS &amp; SECTIONS</div></div>
-  </div>
-  <div class="footer-bar"><span>PROJECT 003 — WORKSPACE DESIGN</span><span>DOC 001 / PAGE 06</span></div>
-</div>
-
-<!-- ================= COMBINED: PROJECT 005 + 006 ================= -->
-<div class="page bold-bg bg-teal">
-  <div class="about-grid"></div>
-  <div class="about-header">
-    <div class="about-logo">YT.</div>
-    <div class="about-navpill">DOC 001</div>
-  </div>
-  <div class="about-wave"></div>
-  <div style="position:relative;z-index:2;padding:0 0.32in;">
-    <div class="about-kicker">// Project 005 &amp; 006</div>
-    <div class="about-headline sm" style="margin-bottom:0.14in;">
-      <div class="hl-row"><div class="shadow-line">ROV Work.</div><div class="fill-line">ROV Work.</div></div>
-    </div>
-  </div>
-
-  <div style="display:flex;gap:0.26in;margin-bottom:0.2in;padding:0 0.32in;position:relative;z-index:2;">
-    <div style="flex:1;">
-      <div class="badge">Project 005</div>
-      <h2 class="proj-title-pop" style="font-size:16pt;">Manipulator Arm Mount</h2>
-      <div class="card tight">
-        <p class="body-text" style="font-size:9.3pt;">The manipulator arm on one of the Marine Institute's ROVs sat outside the operator's camera view. My supervisor and I 3D printed a custom mount to reposition it — then a printed extension when the first attempt fell short. A fast field fix, typical of ROV operations work.</p>
-        <div class="outcome" style="margin-top:8px;margin-bottom:0;"><span class="chk">✓</span> Manipulator now fully in camera frame</div>
-      </div>
-    </div>
-    <div style="flex:1.25;display:flex;gap:10px;align-items:flex-start;">
-      <div class="polaroid rot-1"><div class="tape"></div><img src="img/sm/manip_hero.jpg" style="width:2.3in;height:2.35in;"><div class="cap">ROV, MOUNTED ARM</div></div>
-      <div class="polaroid rot-5"><div class="tape"></div><img src="img/sm/manip_detail.jpg" style="width:2.3in;height:2.35in;"><div class="cap">MOUNT DETAIL</div></div>
-    </div>
-  </div>
-
-  <div style="display:flex;gap:0.3in;align-items:stretch;padding:0 0.32in;position:relative;z-index:2;">
-    <div style="flex:1.3;">
-      <div class="badge">006 — Operations</div>
-      <h2 class="proj-title-pop" style="font-size:16pt;">ROV Simulator Operations</h2>
-      <div class="card tight">
-        <p class="body-text" style="font-size:9.3pt;margin-bottom:8px;">A recurring part of my role: operating the Marine Institute's high-fidelity ROV simulators for visiting groups in the underwater exploration lab. The largest was the Global MATE ROV competition, hosting government and international guests; I also helped organize the four-day SHAD MicroMate program.</p>
-        <div class="outcome" style="margin-bottom:0;"><span class="chk">✓</span> Guided sessions, Global MATE ROV competition</div>
-      </div>
-    </div>
-    <div style="flex:0.85;display:flex;align-items:center;justify-content:center;">
-      <div class="card" style="text-align:center;width:100%;">
-        <div class="mono" style="font-size:38pt;font-weight:700;color:var(--orange);line-height:1;">~2,000</div>
-        <div class="mono" style="font-size:8pt;font-weight:700;letter-spacing:0.08em;margin-top:8px;">VISITORS GUIDED<br>GLOBAL MATE ROV</div>
-      </div>
-    </div>
-  </div>
-  <div class="footer-bar"><span>PROJECT 005 &amp; 006</span><span>DOC 001 / PAGE 07</span></div>
-</div>
-
-<!-- ================= COMBINED: PROJECT 007 + 008 AUTOMATA (REDESIGNED) ================= -->
-<div class="page bold-bg bg-avocado">
-  <div class="about-grid"></div>
-  <div class="about-header">
-    <div class="about-logo">YT.</div>
-    <div class="about-navpill">DOC 001</div>
-  </div>
-  <div class="about-wave"></div>
-  <div style="position:relative;z-index:2;padding:0 0.32in;">
-    <div class="about-kicker">// Project 007 &amp; 008</div>
-    <div class="about-headline sm">
-      <div class="hl-row"><div class="shadow-line">Automata.</div><div class="fill-line">Automata.</div></div>
-    </div>
-  </div>
-
-  <div style="display:flex;gap:0.26in;padding:0 0.32in;position:relative;z-index:2;">
-    <div style="flex:1;">
-      <div class="polaroid rot-2" style="width:100%;">
-        <div class="tape"></div>
-        <img src="img/sm/auto_4bar.jpg" style="width:100%;height:2.3in;">
-        <div class="cap">4-BAR AUTOMATA MECHANISM</div>
-      </div>
-      <div class="badge" style="margin-top:12px;">Project 007</div>
-      <h2 class="proj-title-pop" style="font-size:15.5pt;">4-Bar Mechanism–Inspired Automata</h2>
-      <div class="card tight">
-        <p class="body-text" style="font-size:8.8pt;margin-bottom:0;">Hand-cranked automaton exploring the same planar-linkage kinematics as Project 002, built from cardboard, dowels, and wire — link lengths and pivot placement set the output motion by hand.</p>
-      </div>
-    </div>
-    <div style="flex:1;">
-      <div class="polaroid rot-4" style="width:100%;">
-        <div class="tape"></div>
-        <img src="img/sm/workshop_wide.jpg" style="width:100%;height:2.3in;">
-        <div class="cap">MOTORIZED AUTOMATA, EYE MECHANISM</div>
-      </div>
-      <div class="badge" style="margin-top:12px;">Project 008</div>
-      <h2 class="proj-title-pop" style="font-size:15.5pt;">Motorized 2-Axis Movement Automata</h2>
-      <div class="card tight">
-        <p class="body-text" style="font-size:8.8pt;margin-bottom:0;">A small electric motor drives mechanical linkages for coordinated 2-axis motion — the first real bridge between mechanical design and electrical/control concepts, and a direct precursor to the Project 004 sensor work.</p>
-      </div>
-    </div>
-  </div>
-
-  <div style="margin-top:0.2in;padding:0 0.32in;position:relative;z-index:2;">
-    <div class="polaroid rot-0" style="width:100%;">
-      <img src="img/sm/auto_2axis.jpg" style="width:100%;height:1.75in;">
-      <div class="cap">AUTOMATA ON DISPLAY, ST. MATTHEW'S MAKERSPACE</div>
-    </div>
-  </div>
-  <div class="footer-bar"><span>PROJECT 007 &amp; 008 — AUTOMATA</span><span>DOC 001 / PAGE 08</span></div>
-</div>
-
-<!-- ================= MAKE-AND-TAKE (REDESIGNED PER REFERENCE) ================= -->
-<div class="page bold-bg bg-orange">
-  <div class="corner-tick tick-tl"></div><div class="corner-tick tick-tr"></div>
-  <div class="hdr-row">
-    <div class="hdr-icon">06</div>
-    <div class="hdr-box"><div class="hdr-title">Make-and-Takes</div></div>
-    <div class="hdr-rule"></div>
-  </div>
-  <div class="blurb-box"><p>A collection of rapid prototypes, hobby builds,<br>and hands-on experiments from my workshop.</p></div>
-
-  <div class="mnt-grid">
-    <div class="mnt-item"><div class="polaroid rot-1"><div class="tape"></div><img src="img/sm/crossbow.jpg"></div><div class="lbl">Crossbow (Ed. Model)</div></div>
-    <div class="mnt-item"><div class="polaroid rot-4"><div class="tape"></div><img src="img/sm/snowball.jpg"></div><div class="lbl">Snowball Launcher</div></div>
-    <div class="mnt-item"><div class="polaroid rot-2"><div class="tape"></div><img src="img/sm/fan1.jpg"></div><div class="lbl">Elastic-Powered Fan</div></div>
-    <div class="mnt-item"><div class="polaroid rot-5"><div class="tape"></div><img src="img/sm/fan2.jpg"></div><div class="lbl">Elastic Fan — V2</div></div>
-    <div class="mnt-item"><div class="polaroid rot-3"><div class="tape"></div><img src="img/sm/launcher.jpg"></div><div class="lbl">Launcher (Bottle Cap)</div></div>
-    <div class="mnt-item"><div class="polaroid rot-6"><div class="tape"></div><img src="img/sm/runningman.jpg"></div><div class="lbl">Running Man Spinner</div></div>
-    <div class="mnt-item"><div class="polaroid rot-2"><div class="tape"></div><img src="img/sm/turmeric.jpg"></div><div class="lbl">Turmeric Anthotypes</div></div>
-    <div class="mnt-item"><div class="polaroid rot-5"><div class="tape"></div><img src="img/sm/remembrance.jpg"></div><div class="lbl">Remembrance Day Stick</div></div>
-  </div>
-
-  <div class="mono" style="margin-top:0.3in;font-size:8pt;color:#fff;font-weight:700;">ALSO IN THE SHOP: TALKING STICK · MICRO:BIT REACTION GAME &amp; DIGITAL DICE · PRINTMAKING (4 TECHNIQUES) · GARDEN BINS &amp; TRELLIS · 3D PRINTING &amp; ALIGNMENT · VACUUM FORMING · CRICUT COASTERS · BALLOON-POWERED CAR</div>
-  <div class="footer-bar"><span>MAKE-AND-TAKE BUILDS</span><span>DOC 001 / PAGE 09</span></div>
-</div>
-
-<!-- ================= CLOSING ================= -->
-<div class="page bold-bg bg-mustard">
-  <div class="corner-tick tick-tl"></div><div class="corner-tick tick-tr"></div>
-  <div class="corner-tick tick-bl"></div><div class="corner-tick tick-br"></div>
-  <div style="display:flex;flex-direction:column;justify-content:center;height:100%;">
-    <div class="badge pop" style="margin-bottom:0.12in;">Thank You</div>
-    <h1 class="headline">LET'S <span class="accent">CONNECT.</span></h1>
-    <div class="card" style="max-width:5.6in;margin-bottom:0.28in;">
-      <p class="body-text" style="margin-bottom:0;">This portfolio is a cross-section of my mechanical design, fabrication, and technical communication work — from funded engineering builds and Marine Institute ROV operations to classroom teaching projects. I'm happy to walk through any of these in more detail.</p>
-    </div>
-    <div class="outcome"><span class="chk">✓</span> Mechanical Engineering (Co-op), Memorial University of Newfoundland</div>
-    <div class="outcome"><span class="chk">✓</span> Engineering Work Term Student, Fisheries &amp; Marine Institute</div>
-    <div class="outcome"><span class="chk">✓</span> Design · Prototyping · Fabrication · Technical Communication</div>
-    <div class="meta-list" style="margin-top:0.3in;"><b>CONTACT</b> YTAHMED@MUN.CA &nbsp;·&nbsp; ST. JOHN'S, NL<br><b>DOCUMENT</b> ENGINEERING PORTFOLIO, VOL. 01, REV. B — 2026</div>
-  </div>
-  <div class="footer-bar"><span>THANK YOU</span><span>DOC 001 / PAGE 10</span></div>
-</div>
-
+  var ticking = false;
+  function updateSpy(){
+    ticking = false;
+    var line = window.scrollY + window.innerHeight * 0.34;
+    var current = targets[0];
+    targets.forEach(function(sec){
+      if (sec.offsetTop <= line) { current = sec; }
+    });
+    if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 4) {
+      current = targets[targets.length - 1];
+    }
+    markActive(current.id);
+  }
+  window.addEventListener('scroll', function(){
+    if (!ticking) { ticking = true; window.requestAnimationFrame(updateSpy); }
+  }, { passive: true });
+  window.addEventListener('resize', updateSpy, { passive: true });
+  updateSpy();
+})();
+</script>
 </body>
 </html>
